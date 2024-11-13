@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "neuronki-bi"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "8afbaa7a-1d41-4a51-b90e-9579b52fbbd7"
+  }
+}
