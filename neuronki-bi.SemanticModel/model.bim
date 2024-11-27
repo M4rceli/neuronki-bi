@@ -16,7 +16,7 @@
       },
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"Dimension Date\",\"Dimension Transaction Type\",\"Dimension Stock Item\",\"Dimension Supplier\",\"Dimension Customer\",\"Fact Movement\"]"
+        "value": "[\"DimDate\",\"DimTransactionType\",\"DimStockItem\",\"DimSupplier\",\"DimCustomer\",\"FactMovement\"]"
       }
     ],
     "culture": "en-US",
@@ -41,7 +41,7 @@
       {
         "name": "d1c45621-1b76-44be-89e3-0fb9099096f0",
         "fromColumn": "Date",
-        "fromTable": "Dimension Date",
+        "fromTable": "DimDate",
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_0311fbcb-25d1-47a2-b741-294224a32427"
@@ -49,7 +49,7 @@
       {
         "name": "b20fd3ba-b21c-4245-b53a-6ca2e1b40baa",
         "fromColumn": "Valid From",
-        "fromTable": "Dimension Transaction Type",
+        "fromTable": "DimTransactionType",
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_fce8994e-cac9-4db7-b329-acb3847993c6"
@@ -57,7 +57,7 @@
       {
         "name": "3a826968-d2f7-4a7b-94aa-de6d37bbb0ac",
         "fromColumn": "Valid To",
-        "fromTable": "Dimension Transaction Type",
+        "fromTable": "DimTransactionType",
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_9bf4a67e-d858-4f73-82d5-54732ad6c5c8"
@@ -65,7 +65,7 @@
       {
         "name": "53f4b6dc-a13e-4a39-b087-b03574da9a34",
         "fromColumn": "Valid From",
-        "fromTable": "Dimension Stock Item",
+        "fromTable": "DimStockItem",
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_9fdd9443-ebeb-44ea-83d1-dea764adbf91"
@@ -73,7 +73,7 @@
       {
         "name": "aa6515fe-95bc-460e-b4a7-920b34661954",
         "fromColumn": "Valid To",
-        "fromTable": "Dimension Stock Item",
+        "fromTable": "DimStockItem",
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_736a3979-4af9-43c2-8879-1e8b2c7e3d66"
@@ -81,7 +81,7 @@
       {
         "name": "466d3c75-64e2-473a-b043-ee869c8212b0",
         "fromColumn": "Valid From",
-        "fromTable": "Dimension Supplier",
+        "fromTable": "DimSupplier",
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_d473744b-1c78-41b8-9f10-a1b0f70abdd0"
@@ -89,7 +89,7 @@
       {
         "name": "fffe21aa-e282-4c3d-8ce8-acb1f4b9ce16",
         "fromColumn": "Valid To",
-        "fromTable": "Dimension Supplier",
+        "fromTable": "DimSupplier",
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_ab47c451-a55a-4dbc-be1b-b5aa9ecceeec"
@@ -97,7 +97,7 @@
       {
         "name": "0f490fdc-3c80-4393-8ef4-d5f6b4a884b3",
         "fromColumn": "Valid From",
-        "fromTable": "Dimension Customer",
+        "fromTable": "DimCustomer",
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_b238c877-816d-48ea-b8c2-6cd083a8a01e"
@@ -105,7 +105,7 @@
       {
         "name": "61b6c48f-833e-475a-b0de-870251fb7a8a",
         "fromColumn": "Valid To",
-        "fromTable": "Dimension Customer",
+        "fromTable": "DimCustomer",
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_5bc87619-d1d9-4a1f-a1db-17a25b4f988e"
@@ -119,9 +119,9 @@
           }
         ],
         "fromColumn": "Date Key",
-        "fromTable": "Fact Movement",
+        "fromTable": "FactMovement",
         "toColumn": "Date",
-        "toTable": "Dimension Date"
+        "toTable": "DimDate"
       },
       {
         "name": "037e42c0-4144-46d8-b734-84ddef515493",
@@ -132,9 +132,9 @@
           }
         ],
         "fromColumn": "Transaction Type Key",
-        "fromTable": "Fact Movement",
+        "fromTable": "FactMovement",
         "toColumn": "Transaction Type Key",
-        "toTable": "Dimension Transaction Type"
+        "toTable": "DimTransactionType"
       },
       {
         "name": "784f1b92-bbd6-4e57-8f5a-21a81ac58704",
@@ -145,9 +145,9 @@
           }
         ],
         "fromColumn": "Stock Item Key",
-        "fromTable": "Fact Movement",
+        "fromTable": "FactMovement",
         "toColumn": "Stock Item Key",
-        "toTable": "Dimension Stock Item"
+        "toTable": "DimStockItem"
       },
       {
         "name": "5663b11c-ce63-433b-8f6d-e82a798d3a52",
@@ -158,9 +158,9 @@
           }
         ],
         "fromColumn": "Supplier Key",
-        "fromTable": "Fact Movement",
+        "fromTable": "FactMovement",
         "toColumn": "Supplier Key",
-        "toTable": "Dimension Supplier"
+        "toTable": "DimSupplier"
       },
       {
         "name": "4690858b-de27-4468-a727-7e1a97dbcf84",
@@ -171,15 +171,25 @@
           }
         ],
         "fromColumn": "Customer Key",
-        "fromTable": "Fact Movement",
+        "fromTable": "FactMovement",
         "toColumn": "Customer Key",
-        "toTable": "Dimension Customer"
+        "toTable": "DimCustomer"
       }
     ],
     "sourceQueryCulture": "en-GB",
     "tables": [
       {
-        "name": "Dimension Date",
+        "name": "DimDate",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Nawigacja"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
         "columns": [
           {
             "name": "Date",
@@ -232,10 +242,11 @@
                 "value": "Automatic"
               }
             ],
-            "dataType": "string",
+            "dataType": "int64",
+            "formatString": "0",
             "lineageTag": "2620cb9f-0e81-4820-898c-c5f8af97acfe",
             "sourceColumn": "Day",
-            "summarizeBy": "none"
+            "summarizeBy": "sum"
           },
           {
             "name": "Month",
@@ -389,16 +400,17 @@
         "lineageTag": "b61bb927-4d6e-4ba7-9f61-4481408f6101",
         "partitions": [
           {
-            "name": "Dimension Date",
+            "name": "DimDate",
             "mode": "import",
             "source": {
               "expression": [
                 "let",
                 "    Source = Sql.Databases(\"localhost\"),",
                 "    WideWorldImportersDW = Source{[Name=\"WideWorldImportersDW\"]}[Data],",
-                "    Dimension_Date = WideWorldImportersDW{[Schema=\"Dimension\",Item=\"Date\"]}[Data]",
+                "    Dimension_Date = WideWorldImportersDW{[Schema=\"Dimension\",Item=\"Date\"]}[Data],",
+                "    #\"Zmieniono typ\" = Table.TransformColumnTypes(Dimension_Date,{{\"Day\", Int64.Type}})",
                 "in",
-                "    Dimension_Date"
+                "    #\"Zmieniono typ\""
               ],
               "type": "m"
             }
@@ -814,7 +826,7 @@
             "name": "LocalDateTable_0311fbcb-25d1-47a2-b741-294224a32427",
             "mode": "import",
             "source": {
-              "expression": "Calendar(Date(Year(MIN('Dimension Date'[Date])), 1, 1), Date(Year(MAX('Dimension Date'[Date])), 12, 31))",
+              "expression": "Calendar(Date(Year(MIN('DimDate'[Date])), 1, 1), Date(Year(MAX('DimDate'[Date])), 12, 31))",
               "type": "calculated"
             }
           }
@@ -822,7 +834,13 @@
         "showAsVariationsOnly": true
       },
       {
-        "name": "Dimension Transaction Type",
+        "name": "DimTransactionType",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
         "columns": [
           {
             "name": "Transaction Type Key",
@@ -933,7 +951,7 @@
         "lineageTag": "79401bfe-b7c4-40d3-8ad4-bae842827a07",
         "partitions": [
           {
-            "name": "Dimension Transaction Type",
+            "name": "DimTransactionType",
             "mode": "import",
             "source": {
               "expression": [
@@ -1148,7 +1166,7 @@
             "name": "LocalDateTable_fce8994e-cac9-4db7-b329-acb3847993c6",
             "mode": "import",
             "source": {
-              "expression": "Calendar(Date(Year(MIN('Dimension Transaction Type'[Valid From])), 1, 1), Date(Year(MAX('Dimension Transaction Type'[Valid From])), 12, 31))",
+              "expression": "Calendar(Date(Year(MIN('DimTransactionType'[Valid From])), 1, 1), Date(Year(MAX('DimTransactionType'[Valid From])), 12, 31))",
               "type": "calculated"
             }
           }
@@ -1354,7 +1372,7 @@
             "name": "LocalDateTable_9bf4a67e-d858-4f73-82d5-54732ad6c5c8",
             "mode": "import",
             "source": {
-              "expression": "Calendar(Date(Year(MIN('Dimension Transaction Type'[Valid To])), 1, 1), Date(Year(MAX('Dimension Transaction Type'[Valid To])), 12, 31))",
+              "expression": "Calendar(Date(Year(MIN('DimTransactionType'[Valid To])), 1, 1), Date(Year(MAX('DimTransactionType'[Valid To])), 12, 31))",
               "type": "calculated"
             }
           }
@@ -1362,7 +1380,17 @@
         "showAsVariationsOnly": true
       },
       {
-        "name": "Dimension Stock Item",
+        "name": "DimStockItem",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Nawigacja"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
         "columns": [
           {
             "name": "Stock Item Key",
@@ -1661,16 +1689,18 @@
         "lineageTag": "9ae4c351-4af2-4013-b8d8-19c20b2d6067",
         "partitions": [
           {
-            "name": "Dimension Stock Item",
+            "name": "DimStockItem",
             "mode": "import",
             "source": {
               "expression": [
                 "let",
                 "    Source = Sql.Databases(\"localhost\"),",
                 "    WideWorldImportersDW = Source{[Name=\"WideWorldImportersDW\"]}[Data],",
-                "    #\"Dimension_Stock Item\" = WideWorldImportersDW{[Schema=\"Dimension\",Item=\"Stock Item\"]}[Data]",
+                "    #\"Dimension_Stock Item\" = WideWorldImportersDW{[Schema=\"Dimension\",Item=\"Stock Item\"]}[Data],",
+                "    #\"Usunięto pierwsze wiersze\" = Table.Skip(#\"Dimension_Stock Item\",1),",
+                "    #\"Usunięto kolumny\" = Table.RemoveColumns(#\"Usunięto pierwsze wiersze\",{\"Photo\"})",
                 "in",
-                "    #\"Dimension_Stock Item\""
+                "    #\"Usunięto kolumny\""
               ],
               "type": "m"
             }
@@ -1876,7 +1906,7 @@
             "name": "LocalDateTable_9fdd9443-ebeb-44ea-83d1-dea764adbf91",
             "mode": "import",
             "source": {
-              "expression": "Calendar(Date(Year(MIN('Dimension Stock Item'[Valid From])), 1, 1), Date(Year(MAX('Dimension Stock Item'[Valid From])), 12, 31))",
+              "expression": "Calendar(Date(Year(MIN('DimStockItem'[Valid From])), 1, 1), Date(Year(MAX('DimStockItem'[Valid From])), 12, 31))",
               "type": "calculated"
             }
           }
@@ -2082,7 +2112,7 @@
             "name": "LocalDateTable_736a3979-4af9-43c2-8879-1e8b2c7e3d66",
             "mode": "import",
             "source": {
-              "expression": "Calendar(Date(Year(MIN('Dimension Stock Item'[Valid To])), 1, 1), Date(Year(MAX('Dimension Stock Item'[Valid To])), 12, 31))",
+              "expression": "Calendar(Date(Year(MIN('DimStockItem'[Valid To])), 1, 1), Date(Year(MAX('DimStockItem'[Valid To])), 12, 31))",
               "type": "calculated"
             }
           }
@@ -2090,7 +2120,17 @@
         "showAsVariationsOnly": true
       },
       {
-        "name": "Dimension Supplier",
+        "name": "DimSupplier",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Nawigacja"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
         "columns": [
           {
             "name": "Supplier Key",
@@ -2267,16 +2307,17 @@
         "lineageTag": "7eba69db-ec4d-42db-914f-1ace2127675a",
         "partitions": [
           {
-            "name": "Dimension Supplier",
+            "name": "DimSupplier",
             "mode": "import",
             "source": {
               "expression": [
                 "let",
                 "    Source = Sql.Databases(\"localhost\"),",
                 "    WideWorldImportersDW = Source{[Name=\"WideWorldImportersDW\"]}[Data],",
-                "    Dimension_Supplier = WideWorldImportersDW{[Schema=\"Dimension\",Item=\"Supplier\"]}[Data]",
+                "    Dimension_Supplier = WideWorldImportersDW{[Schema=\"Dimension\",Item=\"Supplier\"]}[Data],",
+                "    #\"Usunięto pierwsze wiersze\" = Table.Skip(Dimension_Supplier,1)",
                 "in",
-                "    Dimension_Supplier"
+                "    #\"Usunięto pierwsze wiersze\""
               ],
               "type": "m"
             }
@@ -2482,7 +2523,7 @@
             "name": "LocalDateTable_d473744b-1c78-41b8-9f10-a1b0f70abdd0",
             "mode": "import",
             "source": {
-              "expression": "Calendar(Date(Year(MIN('Dimension Supplier'[Valid From])), 1, 1), Date(Year(MAX('Dimension Supplier'[Valid From])), 12, 31))",
+              "expression": "Calendar(Date(Year(MIN('DimSupplier'[Valid From])), 1, 1), Date(Year(MAX('DimSupplier'[Valid From])), 12, 31))",
               "type": "calculated"
             }
           }
@@ -2688,7 +2729,7 @@
             "name": "LocalDateTable_ab47c451-a55a-4dbc-be1b-b5aa9ecceeec",
             "mode": "import",
             "source": {
-              "expression": "Calendar(Date(Year(MIN('Dimension Supplier'[Valid To])), 1, 1), Date(Year(MAX('Dimension Supplier'[Valid To])), 12, 31))",
+              "expression": "Calendar(Date(Year(MIN('DimSupplier'[Valid To])), 1, 1), Date(Year(MAX('DimSupplier'[Valid To])), 12, 31))",
               "type": "calculated"
             }
           }
@@ -2696,7 +2737,7 @@
         "showAsVariationsOnly": true
       },
       {
-        "name": "Dimension Customer",
+        "name": "DimCustomer",
         "columns": [
           {
             "name": "Customer Key",
@@ -2872,7 +2913,7 @@
         "lineageTag": "e41d82b5-8766-403a-b180-de6bc245cd35",
         "partitions": [
           {
-            "name": "Dimension Customer",
+            "name": "DimCustomer",
             "mode": "import",
             "source": {
               "expression": [
@@ -3087,7 +3128,7 @@
             "name": "LocalDateTable_b238c877-816d-48ea-b8c2-6cd083a8a01e",
             "mode": "import",
             "source": {
-              "expression": "Calendar(Date(Year(MIN('Dimension Customer'[Valid From])), 1, 1), Date(Year(MAX('Dimension Customer'[Valid From])), 12, 31))",
+              "expression": "Calendar(Date(Year(MIN('DimCustomer'[Valid From])), 1, 1), Date(Year(MAX('DimCustomer'[Valid From])), 12, 31))",
               "type": "calculated"
             }
           }
@@ -3293,7 +3334,7 @@
             "name": "LocalDateTable_5bc87619-d1d9-4a1f-a1db-17a25b4f988e",
             "mode": "import",
             "source": {
-              "expression": "Calendar(Date(Year(MIN('Dimension Customer'[Valid To])), 1, 1), Date(Year(MAX('Dimension Customer'[Valid To])), 12, 31))",
+              "expression": "Calendar(Date(Year(MIN('DimCustomer'[Valid To])), 1, 1), Date(Year(MAX('DimCustomer'[Valid To])), 12, 31))",
               "type": "calculated"
             }
           }
@@ -3301,7 +3342,7 @@
         "showAsVariationsOnly": true
       },
       {
-        "name": "Fact Movement",
+        "name": "FactMovement",
         "columns": [
           {
             "name": "Movement Key",
@@ -3465,7 +3506,7 @@
         "lineageTag": "f1b1f5d1-5995-4e71-8c43-f18fe6c52bbc",
         "partitions": [
           {
-            "name": "Fact Movement",
+            "name": "FactMovement",
             "mode": "import",
             "source": {
               "expression": [

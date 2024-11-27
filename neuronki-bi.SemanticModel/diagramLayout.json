@@ -5,29 +5,15 @@
       "ordinal": 0,
       "scrollPosition": {
         "x": 0,
-        "y": 0
+        "y": 100
       },
       "nodes": [
         {
           "location": {
-            "x": 238.61906391778462,
-            "y": 690.46013002465475
+            "x": 748.33746565211686,
+            "y": 536.41233795698713
           },
-          "nodeIndex": "Dimension Customer",
-          "nodeLineageTag": "e41d82b5-8766-403a-b180-de6bc245cd35",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 655.33746565211686,
-            "y": 467.41233795698707
-          },
-          "nodeIndex": "Dimension Date",
-          "nodeLineageTag": "b61bb927-4d6e-4ba7-9f61-4481408f6101",
+          "nodeIndex": "DimDate",
           "size": {
             "height": 300,
             "width": 234
@@ -39,8 +25,7 @@
             "x": 253.770173571368,
             "y": -10
           },
-          "nodeIndex": "Dimension Stock Item",
-          "nodeLineageTag": "9ae4c351-4af2-4013-b8d8-19c20b2d6067",
+          "nodeIndex": "DimStockItem",
           "size": {
             "height": 300,
             "width": 234
@@ -52,8 +37,7 @@
             "x": 649.15424885109837,
             "y": 117.13582955210211
           },
-          "nodeIndex": "Dimension Supplier",
-          "nodeLineageTag": "7eba69db-ec4d-42db-914f-1ace2127675a",
+          "nodeIndex": "DimSupplier",
           "size": {
             "height": 300,
             "width": 234
@@ -65,10 +49,21 @@
             "x": 10,
             "y": 340.21292302311434
           },
-          "nodeIndex": "Dimension Transaction Type",
-          "nodeLineageTag": "79401bfe-b7c4-40d3-8ad4-bae842827a07",
+          "nodeIndex": "DimTransactionType",
           "size": {
             "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 238.61906391778462,
+            "y": 690.46013002465475
+          },
+          "nodeIndex": "DimCustomer",
+          "size": {
+            "height": 300,
             "width": 234
           },
           "zIndex": 0
@@ -78,8 +73,7 @@
             "x": 364.96875337685594,
             "y": 340.2293019777465
           },
-          "nodeIndex": "Fact Movement",
-          "nodeLineageTag": "f1b1f5d1-5995-4e71-8c43-f18fe6c52bbc",
+          "nodeIndex": "FactMovement",
           "size": {
             "height": 300,
             "width": 234
