@@ -839,6 +839,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Nawigacja"
           }
         ],
         "columns": [
@@ -932,20 +936,6 @@
                 "relationship": "3a826968-d2f7-4a7b-94aa-de6d37bbb0ac"
               }
             ]
-          },
-          {
-            "name": "Lineage Key",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "formatString": "0",
-            "lineageTag": "cd740eb4-7485-49e5-8677-58f7bc8a2011",
-            "sourceColumn": "Lineage Key",
-            "summarizeBy": "count"
           }
         ],
         "lineageTag": "79401bfe-b7c4-40d3-8ad4-bae842827a07",
@@ -958,9 +948,10 @@
                 "let",
                 "    Source = Sql.Databases(\"localhost\"),",
                 "    WideWorldImportersDW = Source{[Name=\"WideWorldImportersDW\"]}[Data],",
-                "    #\"Dimension_Transaction Type\" = WideWorldImportersDW{[Schema=\"Dimension\",Item=\"Transaction Type\"]}[Data]",
+                "    #\"Dimension_Transaction Type\" = WideWorldImportersDW{[Schema=\"Dimension\",Item=\"Transaction Type\"]}[Data],",
+                "    #\"Usunięto kolumny\" = Table.RemoveColumns(#\"Dimension_Transaction Type\",{\"Lineage Key\"})",
                 "in",
-                "    #\"Dimension_Transaction Type\""
+                "    #\"Usunięto kolumny\""
               ],
               "type": "m"
             }
@@ -2288,20 +2279,6 @@
                 "relationship": "fffe21aa-e282-4c3d-8ce8-acb1f4b9ce16"
               }
             ]
-          },
-          {
-            "name": "Lineage Key",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "formatString": "0",
-            "lineageTag": "3fee27bb-5736-4f75-8a06-9bfbd42a7955",
-            "sourceColumn": "Lineage Key",
-            "summarizeBy": "count"
           }
         ],
         "lineageTag": "7eba69db-ec4d-42db-914f-1ace2127675a",
@@ -2315,9 +2292,10 @@
                 "    Source = Sql.Databases(\"localhost\"),",
                 "    WideWorldImportersDW = Source{[Name=\"WideWorldImportersDW\"]}[Data],",
                 "    Dimension_Supplier = WideWorldImportersDW{[Schema=\"Dimension\",Item=\"Supplier\"]}[Data],",
-                "    #\"Usunięto pierwsze wiersze\" = Table.Skip(Dimension_Supplier,1)",
+                "    #\"Usunięto pierwsze wiersze\" = Table.Skip(Dimension_Supplier,1),",
+                "    #\"Usunięto kolumny\" = Table.RemoveColumns(#\"Usunięto pierwsze wiersze\",{\"Lineage Key\"})",
                 "in",
-                "    #\"Usunięto pierwsze wiersze\""
+                "    #\"Usunięto kolumny\""
               ],
               "type": "m"
             }
@@ -2738,6 +2716,16 @@
       },
       {
         "name": "DimCustomer",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Nawigacja"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
         "columns": [
           {
             "name": "Customer Key",
@@ -2791,19 +2779,6 @@
             "dataType": "string",
             "lineageTag": "bbd914d0-b9d1-4308-9b25-12f773c499f9",
             "sourceColumn": "Bill To Customer",
-            "summarizeBy": "none"
-          },
-          {
-            "name": "Category",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "string",
-            "lineageTag": "e1c7c491-7baa-4ec7-8774-37cd160fd741",
-            "sourceColumn": "Category",
             "summarizeBy": "none"
           },
           {
@@ -2894,20 +2869,6 @@
                 "relationship": "61b6c48f-833e-475a-b0de-870251fb7a8a"
               }
             ]
-          },
-          {
-            "name": "Lineage Key",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "formatString": "0",
-            "lineageTag": "5c3f05b6-246e-48f8-a696-f7c355388957",
-            "sourceColumn": "Lineage Key",
-            "summarizeBy": "count"
           }
         ],
         "lineageTag": "e41d82b5-8766-403a-b180-de6bc245cd35",
@@ -2920,9 +2881,11 @@
                 "let",
                 "    Source = Sql.Databases(\"localhost\"),",
                 "    WideWorldImportersDW = Source{[Name=\"WideWorldImportersDW\"]}[Data],",
-                "    Dimension_Customer = WideWorldImportersDW{[Schema=\"Dimension\",Item=\"Customer\"]}[Data]",
+                "    Dimension_Customer = WideWorldImportersDW{[Schema=\"Dimension\",Item=\"Customer\"]}[Data],",
+                "    #\"Usunięto pierwsze wiersze\" = Table.Skip(Dimension_Customer,1),",
+                "    #\"Usunięto kolumny\" = Table.RemoveColumns(#\"Usunięto pierwsze wiersze\",{\"Category\", \"Lineage Key\"})",
                 "in",
-                "    Dimension_Customer"
+                "    #\"Usunięto kolumny\""
               ],
               "type": "m"
             }
@@ -3343,6 +3306,16 @@
       },
       {
         "name": "FactMovement",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Nawigacja"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
         "columns": [
           {
             "name": "Movement Key",
@@ -3487,20 +3460,6 @@
             "lineageTag": "ecaf46a4-7636-47f4-aca3-a87cb06b77ca",
             "sourceColumn": "Quantity",
             "summarizeBy": "sum"
-          },
-          {
-            "name": "Lineage Key",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "formatString": "0",
-            "lineageTag": "9f1c18d6-4462-4e94-8469-27477b500e75",
-            "sourceColumn": "Lineage Key",
-            "summarizeBy": "count"
           }
         ],
         "lineageTag": "f1b1f5d1-5995-4e71-8c43-f18fe6c52bbc",
@@ -3513,9 +3472,10 @@
                 "let",
                 "    Source = Sql.Databases(\"localhost\"),",
                 "    WideWorldImportersDW = Source{[Name=\"WideWorldImportersDW\"]}[Data],",
-                "    Fact_Movement = WideWorldImportersDW{[Schema=\"Fact\",Item=\"Movement\"]}[Data]",
+                "    Fact_Movement = WideWorldImportersDW{[Schema=\"Fact\",Item=\"Movement\"]}[Data],",
+                "    #\"Usunięto kolumny\" = Table.RemoveColumns(Fact_Movement,{\"Lineage Key\"})",
                 "in",
-                "    Fact_Movement"
+                "    #\"Usunięto kolumny\""
               ],
               "type": "m"
             }
