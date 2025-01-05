@@ -1,11 +1,20 @@
 {
+<<<<<<< Updated upstream
   "config": "{\"version\":\"5.59\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU10\",\"version\":\"5.59\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"useEnhancedTooltips\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+=======
+  "config": "{\"version\":\"5.59\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU10\",\"version\":\"5.60\",\"type\":2},\"customTheme\":{\"name\":\"AccessibleDefault\",\"version\":\"5.60\",\"type\":2}},\"activeSectionIndex\":1,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"useEnhancedTooltips\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}",
+>>>>>>> Stashed changes
   "layoutOptimization": 0,
   "resourcePackages": [
     {
       "resourcePackage": {
         "disabled": false,
         "items": [
+          {
+            "name": "AccessibleDefault",
+            "path": "BuiltInThemes/AccessibleDefault.json",
+            "type": 201
+          },
           {
             "name": "CY24SU10",
             "path": "BaseThemes/CY24SU10.json",
@@ -20,13 +29,98 @@
   "sections": [
     {
       "config": "{}",
+<<<<<<< Updated upstream
       "displayName": "Page 1",
+=======
+      "displayName": "Overview of transactions by type",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "892e4ba9492ae89cadda",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"ab50273e12923d474948\",\"layouts\":[{\"id\":0,\"position\":{\"x\":327.7191306424648,\"y\":48.913303080964894,\"z\":0,\"width\":665.2209219011226,\"height\":651.7697635538572,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"lineClusteredColumnComboChart\",\"projections\":{\"Category\":[{\"queryRef\":\"DimTransactionType.Transaction Type\",\"active\":true}],\"Y\":[{\"queryRef\":\"FactMovement.Transaction Value\"}],\"Y2\":[{\"queryRef\":\"FactMovement.Number of Transactions\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DimTransactionType\",\"Type\":0},{\"Name\":\"f\",\"Entity\":\"FactMovement\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Transaction Type\"},\"Name\":\"DimTransactionType.Transaction Type\",\"NativeReferenceName\":\"Transaction Type\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Transaction Value\"},\"Name\":\"FactMovement.Transaction Value\",\"NativeReferenceName\":\"Transaction Value\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Number of Transactions\"},\"Name\":\"FactMovement.Number of Transactions\",\"NativeReferenceName\":\"Number of Transactions\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Transaction Value\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"legend\":[{\"properties\":{\"position\":{\"expr\":{\"Literal\":{\"Value\":\"'TopRight'\"}}}}}],\"categoryAxis\":[{\"properties\":{\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"valueAxis\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"secShow\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"secStart\":{\"expr\":{\"Literal\":{\"Value\":\"-22000D\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'Arial'\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Transaction value and quantity by transaction type'\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"width\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}],\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.3}}}}}}}]}}}",
+          "filters": "[]",
+          "height": 651.77,
+          "width": 665.22,
+          "x": 327.72,
+          "y": 48.91,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"b3cf389916bcd9724af1\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":1,\"width\":1280.305708144256,\"height\":48.913303080964894,\"tabOrder\":1}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Overview of transactions by type\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"20pt\"}}],\"horizontalTextAlignment\":\"center\"}]}}]}}}",
+          "filters": "[]",
+          "height": 48.91,
+          "width": 1280.31,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 1.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Information about stock movement",
+>>>>>>> Stashed changes
       "displayOption": 1,
       "filters": "[]",
       "height": 720.00,
       "name": "ce97a69808e5c43fe783",
+<<<<<<< Updated upstream
       "visualContainers": [],
+=======
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"41c944840dcda565dab1\",\"layouts\":[{\"id\":0,\"position\":{\"x\":14.532294974366252,\"y\":59.58240939490163,\"z\":1000,\"width\":261.5813095385925,\"height\":174.38753969239502,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DimDate.Calendar Year\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DimDate\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Calendar Year\"},\"Name\":\"DimDate.Calendar Year\",\"NativeReferenceName\":\"Calendar Year\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}},\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"selection\":[{\"properties\":{\"selectAllCheckboxEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"singleSelect\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"general\":[{\"properties\":{\"orientation\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"header\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Year'\"}}}}}]},\"vcObjects\":{\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.3}}}}}}}]}}}",
+          "filters": "[]",
+          "height": 174.39,
+          "width": 261.58,
+          "x": 14.53,
+          "y": 59.58,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"8db062ec455b551fa20b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":290.64589948732504,\"y\":59.58240939490163,\"z\":0,\"width\":675.7517163080307,\"height\":649.5935853541714,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"columnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"DimDate.Calendar Year Hierarchia.Month\"},{\"queryRef\":\"DimDate.Calendar Year Hierarchia.Day\",\"active\":true}],\"Series\":[{\"queryRef\":\"DimTransactionType.Transaction Type\"}],\"Y\":[{\"queryRef\":\"Sum(FactMovement.Quantity)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DimDate\",\"Type\":0},{\"Name\":\"d1\",\"Entity\":\"DimTransactionType\",\"Type\":0},{\"Name\":\"f\",\"Entity\":\"FactMovement\",\"Type\":0}],\"Select\":[{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Hierarchy\":\"Calendar Year Hierarchia\"}},\"Level\":\"Month\"},\"Name\":\"DimDate.Calendar Year Hierarchia.Month\",\"NativeReferenceName\":\"Calendar Year Hierarchia Month\"},{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Hierarchy\":\"Calendar Year Hierarchia\"}},\"Level\":\"Day\"},\"Name\":\"DimDate.Calendar Year Hierarchia.Day\",\"NativeReferenceName\":\"Calendar Year Hierarchia Day\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"Transaction Type\"},\"Name\":\"DimTransactionType.Transaction Type\",\"NativeReferenceName\":\"Transaction Type\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Quantity\"}},\"Function\":0},\"Name\":\"Sum(FactMovement.Quantity)\",\"NativeReferenceName\":\"Suma elementów Quantity\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"valueAxis\":[{\"properties\":{\"titleText\":{\"expr\":{\"Literal\":{\"Value\":\"'Quantity'\"}}},\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"categoryAxis\":[{\"properties\":{\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"legend\":[{\"properties\":{\"position\":{\"expr\":{\"Literal\":{\"Value\":\"'TopRight'\"}}}}}]},\"vcObjects\":{\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.3}}}}}}}],\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Quantity of stock movement vs date and type of transaction'\"}}},\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'Arial'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 649.59,
+          "width": 675.75,
+          "x": 290.65,
+          "y": 59.58,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"e865bbb3834924a85fde\",\"layouts\":[{\"id\":0,\"position\":{\"x\":14.532294974366252,\"y\":244.14255556935302,\"z\":3000,\"width\":261.5813095385925,\"height\":465.03343917972006,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DimTransactionType.Transaction Type\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DimTransactionType\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Transaction Type\"},\"Name\":\"DimTransactionType.Transaction Type\",\"NativeReferenceName\":\"Transaction Type\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}},\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"general\":[{\"properties\":{}}],\"selection\":[{\"properties\":{\"selectAllCheckboxEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"header\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Transaction type'\"}}}}}]},\"vcObjects\":{\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.3}}}}}}}]}}}",
+          "filters": "[]",
+          "height": 465.03,
+          "width": 261.58,
+          "x": 14.53,
+          "y": 244.14,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"e95ba2e1879862d8a552\",\"layouts\":[{\"id\":0,\"position\":{\"x\":14.532294974366252,\"y\":10.172606482056375,\"z\":4000,\"width\":1233.7918433236948,\"height\":49.40980291284525,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Information about stock movement\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"20pt\"}}],\"horizontalTextAlignment\":\"center\"}]}}]}}}",
+          "filters": "[]",
+          "height": 49.41,
+          "width": 1233.79,
+          "x": 14.53,
+          "y": 10.17,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"f3d69ff2bc9be6f78f14\",\"layouts\":[{\"id\":0,\"position\":{\"x\":991.1025172517783,\"y\":59.58240939490163,\"z\":2000,\"width\":289.1926699898884,\"height\":649.5935853541714,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"FactMovement.WWI Invoice ID\"},{\"queryRef\":\"FactMovement.WWI Purchase Order ID\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"FactMovement\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"WWI Invoice ID\"},\"Name\":\"FactMovement.WWI Invoice ID\",\"NativeReferenceName\":\"WWI Invoice ID\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"WWI Purchase Order ID\"},\"Name\":\"FactMovement.WWI Purchase Order ID\",\"NativeReferenceName\":\"WWI Purchase Order ID\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"WWI Purchase Order ID\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"columnFormatting\":[{\"properties\":{\"styleHeader\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"styleTotal\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}},\"selector\":{\"metadata\":\"FactMovement.WWI Invoice ID\"}}]},\"vcObjects\":{\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.3}}}}}}}]}}}",
+          "filters": "[]",
+          "height": 649.59,
+          "width": 289.19,
+          "x": 991.10,
+          "y": 59.58,
+          "z": 2000.00
+        }
+      ],
+>>>>>>> Stashed changes
       "width": 1280.00
     }
-  ]
+  ],
+  "theme": "AccessibleDefault"
 }
