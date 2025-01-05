@@ -3234,6 +3234,31 @@
           }
         ],
         "lineageTag": "f1b1f5d1-5995-4e71-8c43-f18fe6c52bbc",
+        "measures": [
+          {
+            "name": "Transaction Value",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "SUMX(",
+              "    FactMovement,",
+              "    FactMovement[Quantity] * RELATED(DimStockItem[Unit Price])",
+              ")"
+            ],
+            "lineageTag": "3b2f34e6-a934-4a02-a45c-c1453e79f977"
+          },
+          {
+            "name": "Number of Transactions",
+            "expression": "COUNTROWS(FactMovement)",
+            "formatString": "0",
+            "lineageTag": "b57c7551-b79e-428b-8c17-32f115a58520"
+          }
+        ],
         "partitions": [
           {
             "name": "FactMovement",
