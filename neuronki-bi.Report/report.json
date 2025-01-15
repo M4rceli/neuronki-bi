@@ -1,5 +1,6 @@
 {
-  "config": "{\"version\":\"5.59\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU10\",\"version\":\"5.59\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"useEnhancedTooltips\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}",
+  "config": "{\"version\":\"5.44\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU10\",\"version\":\"5.59\",\"type\":2}},\"activeSectionIndex\":1,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"useEnhancedTooltips\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}",
+  "filters": "[{\"name\":\"d20b05ae797c8af78400\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DimTransactionType\"}},\"Property\":\"Is_Used\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DimTransactionType\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Is_Used\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Yes'\"}}]]}}}]},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{}}]",
   "layoutOptimization": 0,
   "resourcePackages": [
     {
@@ -20,6 +21,117 @@
   "sections": [
     {
       "config": "{}",
+      "displayName": "Efficiency of stock management",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "0e33450126b684d292a8",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"12e939b9838f50023f66\",\"layouts\":[{\"id\":0,\"position\":{\"x\":289.1694352159468,\"y\":0,\"z\":2000,\"width\":229.6345514950166,\"height\":145.64784053156146,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"_Measures.Transactions_Quantity_Sum\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Transactions_Quantity_Sum\"},\"Name\":\"_Measures.Transactions_Quantity_Sum\",\"NativeReferenceName\":\"Transactions_Quantity_Sum\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Transactions_Quantity_Sum\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 145.65,
+          "width": 229.63,
+          "x": 289.17,
+          "y": 0.00,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"138ff367279e5256af5b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":150.96345514950164,\"y\":345.51495016611295,\"z\":8002,\"width\":447.57475083056477,\"height\":374.21926910299004,\"tabOrder\":8002}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"DimStockItem.Stock Item\"},{\"queryRef\":\"_Measures.Movement_Number\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DimStockItem\",\"Type\":0},{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Stock Item\"},\"Name\":\"DimStockItem.Stock Item\",\"NativeReferenceName\":\"Stock Item\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Movement_Number\"},\"Name\":\"_Measures.Movement_Number\",\"NativeReferenceName\":\"Movement_Number\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Movement_Number\"}}}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 374.22,
+          "width": 447.57,
+          "x": 150.96,
+          "y": 345.51,
+          "z": 8002.00
+        },
+        {
+          "config": "{\"name\":\"58c9d3c435c7765a292c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":598.5382059800664,\"y\":260.4651162790698,\"z\":5000,\"width\":681.4617940199336,\"height\":460.33222591362124,\"tabOrder\":5000}}],\"singleVisual\":{\"visualType\":\"lineChart\",\"projections\":{\"Category\":[{\"queryRef\":\"DimDate.Calendar Year Hierarchia.Calendar Year\"},{\"queryRef\":\"DimDate.Calendar Year Hierarchia.Quarter\"},{\"queryRef\":\"DimDate.Calendar Year Hierarchia.Month\",\"active\":true}],\"Y\":[{\"queryRef\":\"_Measures.Total_Inbound\"},{\"queryRef\":\"_Measures.Total_Outbound\"},{\"queryRef\":\"_Measures.Transactions_Quantity_Sum\"},{\"queryRef\":\"_Measures.Total_Movement\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DimDate\",\"Type\":0},{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0}],\"Select\":[{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Hierarchy\":\"Calendar Year Hierarchia\"}},\"Level\":\"Calendar Year\"},\"Name\":\"DimDate.Calendar Year Hierarchia.Calendar Year\",\"NativeReferenceName\":\"Calendar Year Hierarchia Calendar Year\"},{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Hierarchy\":\"Calendar Year Hierarchia\"}},\"Level\":\"Month\"},\"Name\":\"DimDate.Calendar Year Hierarchia.Month\",\"NativeReferenceName\":\"Calendar Year Hierarchia Month\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Total_Inbound\"},\"Name\":\"_Measures.Total_Inbound\",\"NativeReferenceName\":\"Total_Inbound\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Total_Outbound\"},\"Name\":\"_Measures.Total_Outbound\",\"NativeReferenceName\":\"Total_Outbound\"},{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Hierarchy\":\"Calendar Year Hierarchia\"}},\"Level\":\"Quarter\"},\"Name\":\"DimDate.Calendar Year Hierarchia.Quarter\",\"NativeReferenceName\":\"Calendar Year Hierarchia Quarter\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Transactions_Quantity_Sum\"},\"Name\":\"_Measures.Transactions_Quantity_Sum\",\"NativeReferenceName\":\"Transactions_Quantity_Sum\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Total_Movement\"},\"Name\":\"_Measures.Total_Movement\",\"NativeReferenceName\":\"Total_Movement\"}]},\"drillFilterOtherVisuals\":true,\"filterSortOrder\":3}}",
+          "filters": "[{\"name\":\"df944aed5a832b85458d\",\"expression\":{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DimDate\"}},\"Hierarchy\":\"Calendar Year Hierarchia\"}},\"Level\":\"Calendar Year\"}},\"type\":\"Advanced\",\"howCreated\":0,\"isHiddenInViewMode\":false,\"ordinal\":0},{\"name\":\"74cd0ed35b8fe0e8a33d\",\"expression\":{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DimDate\"}},\"Hierarchy\":\"Calendar Year Hierarchia\"}},\"Level\":\"Quarter\"}},\"type\":\"Categorical\",\"howCreated\":0,\"isHiddenInViewMode\":false,\"ordinal\":1},{\"name\":\"e7e296c86a3e8b0ce91c\",\"expression\":{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DimDate\"}},\"Hierarchy\":\"Calendar Year Hierarchia\"}},\"Level\":\"Month\"}},\"type\":\"Categorical\",\"howCreated\":0,\"isHiddenInViewMode\":false,\"ordinal\":2},{\"name\":\"12c93bd74b02d4482807\",\"expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"_Measures\"}},\"Property\":\"Total_Inbound\"}},\"type\":\"Advanced\",\"howCreated\":0,\"isHiddenInViewMode\":false,\"ordinal\":3},{\"name\":\"23740b139e5b7e0b3f6e\",\"expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"_Measures\"}},\"Property\":\"Total_Outbound\"}},\"type\":\"Advanced\",\"howCreated\":0,\"isHiddenInViewMode\":false,\"ordinal\":4}]",
+          "height": 460.33,
+          "width": 681.46,
+          "x": 598.54,
+          "y": 260.47,
+          "z": 5000.00
+        },
+        {
+          "config": "{\"name\":\"5f319157114c7a7be2a3\",\"layouts\":[{\"id\":0,\"position\":{\"x\":692.0930232558139,\"y\":0,\"z\":3000,\"width\":208.37209302325581,\"height\":145.64784053156146,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"_Measures.Total_Inbound\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Total_Inbound\"},\"Name\":\"_Measures.Total_Inbound\",\"NativeReferenceName\":\"Total_Inbound\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Total_Inbound\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 145.65,
+          "width": 208.37,
+          "x": 692.09,
+          "y": 0.00,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"8f62636519c521b72456\",\"layouts\":[{\"id\":0,\"position\":{\"x\":106.31229235880399,\"y\":0,\"z\":0,\"width\":183.9202657807309,\"height\":145.64784053156146,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"_Measures.Transactions_number\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Transactions_number\"},\"Name\":\"_Measures.Transactions_number\",\"NativeReferenceName\":\"Transactions_number\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Transactions_number\"}}}]},\"autoSelectVisualType\":false,\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 145.65,
+          "width": 183.92,
+          "x": 106.31,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"acfb41d711e13b56784f\",\"layouts\":[{\"id\":0,\"position\":{\"x\":6.378737541528239,\"y\":296.6112956810631,\"z\":6000,\"width\":153.08970099667772,\"height\":174.35215946843854,\"tabOrder\":6000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DimDate.Calendar Year Hierarchia.Calendar Year\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DimDate\",\"Type\":0}],\"Select\":[{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Hierarchy\":\"Calendar Year Hierarchia\"}},\"Level\":\"Calendar Year\"},\"Name\":\"DimDate.Calendar Year Hierarchia.Calendar Year\",\"NativeReferenceName\":\"Calendar Year Hierarchia Calendar Year\"}]},\"expansionStates\":[{\"roles\":[\"Values\"],\"levels\":[{\"queryRefs\":[\"DimDate.Calendar Year Hierarchia.Calendar Year\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DimDate\"}},\"Property\":\"Calendar Year\"}}],\"isPinned\":true}],\"root\":{\"identityValues\":null}}],\"drillFilterOtherVisuals\":true,\"filterSortOrder\":3,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{}}],\"selection\":[{\"properties\":{\"selectAllCheckboxEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[{\"name\":\"cec716278f7c7b22aa51\",\"expression\":{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DimDate\"}},\"Hierarchy\":\"Calendar Year Hierarchia\"}},\"Level\":\"Calendar Year\"}},\"type\":\"Advanced\",\"howCreated\":0,\"isHiddenInViewMode\":false,\"ordinal\":0},{\"name\":\"5f6571aa52c8f0f1df6f\",\"expression\":{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DimDate\"}},\"Hierarchy\":\"Calendar Year Hierarchia\"}},\"Level\":\"Quarter\"}},\"type\":\"Categorical\",\"howCreated\":1,\"isHiddenInViewMode\":false,\"ordinal\":1},{\"name\":\"2b8a2c150790b7dc92ad\",\"expression\":{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"DimDate\"}},\"Hierarchy\":\"Calendar Year Hierarchia\"}},\"Level\":\"Month\"}},\"type\":\"Categorical\",\"howCreated\":1,\"isHiddenInViewMode\":false,\"ordinal\":2}]",
+          "height": 174.35,
+          "width": 153.09,
+          "x": 6.38,
+          "y": 296.61,
+          "z": 6000.00
+        },
+        {
+          "config": "{\"name\":\"c96f763011958e065d8e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":486.9102990033222,\"y\":0,\"z\":4000,\"width\":205.18272425249168,\"height\":145.64784053156146,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"_Measures.Total_Outbound\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Total_Outbound\"},\"Name\":\"_Measures.Total_Outbound\",\"NativeReferenceName\":\"Total_Outbound\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Total_Outbound\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 145.65,
+          "width": 205.18,
+          "x": 486.91,
+          "y": 0.00,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"e1fd296becca7434f70f\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1102.4584717607972,\"y\":0,\"z\":7000,\"width\":177.54152823920265,\"height\":145.64784053156146,\"tabOrder\":7000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"_Measures.Total_Movement\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Total_Movement\"},\"Name\":\"_Measures.Total_Movement\",\"NativeReferenceName\":\"Total_Movement\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Total_Movement\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 145.65,
+          "width": 177.54,
+          "x": 1102.46,
+          "y": 0.00,
+          "z": 7000.00
+        },
+        {
+          "config": "{\"name\":\"f90e27cc5a20e4faebb9\",\"layouts\":[{\"id\":0,\"position\":{\"x\":298.7375415282392,\"y\":150.96345514950164,\"z\":8001,\"width\":220.06644518272424,\"height\":189.2358803986711,\"tabOrder\":8001}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"_Measures.Top_Product\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Top_Product\"},\"Name\":\"_Measures.Top_Product\",\"NativeReferenceName\":\"Top_Product\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"20D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 189.24,
+          "width": 220.07,
+          "x": 298.74,
+          "y": 150.96,
+          "z": 8001.00
+        },
+        {
+          "config": "{\"name\":\"fb2e3a0d7d1170ccfac7\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10.631229235880399,\"y\":150.96345514950164,\"z\":1000,\"width\":279.60132890365446,\"height\":145.64784053156146,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DimTransactionType.Transaction Type\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DimTransactionType\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Transaction Type\"},\"Name\":\"DimTransactionType.Transaction Type\",\"NativeReferenceName\":\"Transaction Type\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{}}],\"selection\":[{\"properties\":{\"selectAllCheckboxEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"strictSingleSelect\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 145.65,
+          "width": 279.60,
+          "x": 10.63,
+          "y": 150.96,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"fcbb7f245b3de2a767d0\",\"layouts\":[{\"id\":0,\"position\":{\"x\":900.4651162790698,\"y\":0,\"z\":8000,\"width\":222.19269102990032,\"height\":150.96345514950164,\"tabOrder\":8000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"_Measures.Average_Movement\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Average_Movement\"},\"Name\":\"_Measures.Average_Movement\",\"NativeReferenceName\":\"Average_Movement\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Average_Movement\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 150.96,
+          "width": 222.19,
+          "x": 900.47,
+          "y": 0.00,
+          "z": 8000.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
       "displayName": "Information about stock movement",
       "displayOption": 1,
       "filters": "[]",
@@ -27,16 +139,16 @@
       "name": "ce97a69808e5c43fe783",
       "visualContainers": [
         {
-          "config": "{\"name\":\"41c944840dcda565dab1\",\"layouts\":[{\"id\":0,\"position\":{\"x\":14.532294974366252,\"y\":59.58240939490163,\"z\":1,\"width\":261.5813095385925,\"height\":174.38753969239502,\"tabOrder\":1}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DimDate.Calendar Year\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DimDate\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Calendar Year\"},\"Name\":\"DimDate.Calendar Year\",\"NativeReferenceName\":\"Calendar Year\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}},\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"selection\":[{\"properties\":{\"selectAllCheckboxEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"singleSelect\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"general\":[{\"properties\":{\"orientation\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"header\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Year'\"}}}}}]},\"vcObjects\":{\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.3}}}}}}}]}}}",
+          "config": "{\"name\":\"41c944840dcda565dab1\",\"layouts\":[{\"id\":0,\"position\":{\"x\":14.532294974366252,\"y\":59.58240939490163,\"z\":1000,\"width\":261.5813095385925,\"height\":174.38753969239502,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DimDate.Calendar Year\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DimDate\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Calendar Year\"},\"Name\":\"DimDate.Calendar Year\",\"NativeReferenceName\":\"Calendar Year\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"selection\":[{\"properties\":{\"selectAllCheckboxEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"singleSelect\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"general\":[{\"properties\":{\"orientation\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DimDate\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Calendar Year\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"2015L\"}}]]}}}]}}}}],\"header\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Year'\"}}}}}]},\"vcObjects\":{\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.3}}}}}}}]}}}",
           "filters": "[]",
           "height": 174.39,
           "width": 261.58,
           "x": 14.53,
           "y": 59.58,
-          "z": 1.00
+          "z": 1000.00
         },
         {
-          "config": "{\"name\":\"8db062ec455b551fa20b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":290.64589948732504,\"y\":59.58240939490163,\"z\":0,\"width\":675.7517163080307,\"height\":649.5935853541714,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"columnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"DimDate.Calendar Year Hierarchia.Month\"},{\"queryRef\":\"DimDate.Calendar Year Hierarchia.Day\",\"active\":true}],\"Series\":[{\"queryRef\":\"DimTransactionType.Transaction Type\"}],\"Y\":[{\"queryRef\":\"Sum(FactMovement.Quantity)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DimDate\",\"Type\":0},{\"Name\":\"d1\",\"Entity\":\"DimTransactionType\",\"Type\":0},{\"Name\":\"f\",\"Entity\":\"FactMovement\",\"Type\":0}],\"Select\":[{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Hierarchy\":\"Calendar Year Hierarchia\"}},\"Level\":\"Month\"},\"Name\":\"DimDate.Calendar Year Hierarchia.Month\",\"NativeReferenceName\":\"Calendar Year Hierarchia Month\"},{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Hierarchy\":\"Calendar Year Hierarchia\"}},\"Level\":\"Day\"},\"Name\":\"DimDate.Calendar Year Hierarchia.Day\",\"NativeReferenceName\":\"Calendar Year Hierarchia Day\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"Transaction Type\"},\"Name\":\"DimTransactionType.Transaction Type\",\"NativeReferenceName\":\"Transaction Type\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Quantity\"}},\"Function\":0},\"Name\":\"Sum(FactMovement.Quantity)\",\"NativeReferenceName\":\"Suma elementów Quantity\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"valueAxis\":[{\"properties\":{\"titleText\":{\"expr\":{\"Literal\":{\"Value\":\"'Quantity'\"}}},\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"categoryAxis\":[{\"properties\":{\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"legend\":[{\"properties\":{\"position\":{\"expr\":{\"Literal\":{\"Value\":\"'TopRight'\"}}}}}]},\"vcObjects\":{\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.3}}}}}}}],\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Quantity of stock movement vs date and type of transaction'\"}}},\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'Arial'\"}}}}}]}}}",
+          "config": "{\"name\":\"8db062ec455b551fa20b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":290.64589948732504,\"y\":59.58240939490163,\"z\":0,\"width\":675.7517163080307,\"height\":649.5935853541714,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"columnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"DimDate.Calendar Year Hierarchia.Month\",\"active\":true},{\"queryRef\":\"DimDate.Calendar Year Hierarchia.Day\"}],\"Series\":[{\"queryRef\":\"DimTransactionType.Transaction Type\"}],\"Y\":[{\"queryRef\":\"Sum(FactMovement.Quantity)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DimDate\",\"Type\":0},{\"Name\":\"d1\",\"Entity\":\"DimTransactionType\",\"Type\":0},{\"Name\":\"f\",\"Entity\":\"FactMovement\",\"Type\":0}],\"Select\":[{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Hierarchy\":\"Calendar Year Hierarchia\"}},\"Level\":\"Month\"},\"Name\":\"DimDate.Calendar Year Hierarchia.Month\",\"NativeReferenceName\":\"Calendar Year Hierarchia Month\"},{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Hierarchy\":\"Calendar Year Hierarchia\"}},\"Level\":\"Day\"},\"Name\":\"DimDate.Calendar Year Hierarchia.Day\",\"NativeReferenceName\":\"Calendar Year Hierarchia Day\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"Transaction Type\"},\"Name\":\"DimTransactionType.Transaction Type\",\"NativeReferenceName\":\"Transaction Type\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"Quantity\"}},\"Function\":0},\"Name\":\"Sum(FactMovement.Quantity)\",\"NativeReferenceName\":\"Suma elementów Quantity\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"valueAxis\":[{\"properties\":{\"titleText\":{\"expr\":{\"Literal\":{\"Value\":\"'Quantity'\"}}},\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"categoryAxis\":[{\"properties\":{\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"legend\":[{\"properties\":{\"position\":{\"expr\":{\"Literal\":{\"Value\":\"'TopRight'\"}}}}}]},\"vcObjects\":{\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.3}}}}}}}],\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Quantity of stock movement vs date and type of transaction'\"}}},\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'Arial'\"}}}}}]}}}",
           "filters": "[]",
           "height": 649.59,
           "width": 675.75,
@@ -45,31 +157,31 @@
           "z": 0.00
         },
         {
-          "config": "{\"name\":\"e865bbb3834924a85fde\",\"layouts\":[{\"id\":0,\"position\":{\"x\":14.532294974366252,\"y\":244.14255556935302,\"z\":3,\"width\":261.5813095385925,\"height\":465.03343917972006,\"tabOrder\":3}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DimTransactionType.Transaction Type\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DimTransactionType\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Transaction Type\"},\"Name\":\"DimTransactionType.Transaction Type\",\"NativeReferenceName\":\"Transaction Type\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}},\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"general\":[{\"properties\":{}}],\"selection\":[{\"properties\":{\"selectAllCheckboxEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"header\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Transaction type'\"}}}}}]},\"vcObjects\":{\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.3}}}}}}}]}}}",
+          "config": "{\"name\":\"e865bbb3834924a85fde\",\"layouts\":[{\"id\":0,\"position\":{\"x\":14.532294974366252,\"y\":244.14255556935302,\"z\":3000,\"width\":261.5813095385925,\"height\":465.03343917972006,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"DimTransactionType.Transaction Type\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DimTransactionType\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Transaction Type\"},\"Name\":\"DimTransactionType.Transaction Type\",\"NativeReferenceName\":\"Transaction Type\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DimTransactionType\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Transaction Type\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Stock Adjustment at Stocktake'\"}}]]}}}]}}}}],\"selection\":[{\"properties\":{\"selectAllCheckboxEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"header\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Transaction type'\"}}}}}]},\"vcObjects\":{\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.3}}}}}}}]}}}",
           "filters": "[]",
           "height": 465.03,
           "width": 261.58,
           "x": 14.53,
           "y": 244.14,
-          "z": 3.00
+          "z": 3000.00
         },
         {
-          "config": "{\"name\":\"e95ba2e1879862d8a552\",\"layouts\":[{\"id\":0,\"position\":{\"x\":14.532294974366252,\"y\":10.172606482056375,\"z\":4,\"width\":1233.7918433236948,\"height\":49.40980291284525,\"tabOrder\":4}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Information about stock movement\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"20pt\"}}],\"horizontalTextAlignment\":\"center\"}]}}]}}}",
+          "config": "{\"name\":\"e95ba2e1879862d8a552\",\"layouts\":[{\"id\":0,\"position\":{\"x\":14.532294974366252,\"y\":10.172606482056375,\"z\":4000,\"width\":1233.7918433236948,\"height\":49.40980291284525,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Information about stock movement\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"20pt\"}}],\"horizontalTextAlignment\":\"center\"}]}}]}}}",
           "filters": "[]",
           "height": 49.41,
           "width": 1233.79,
           "x": 14.53,
           "y": 10.17,
-          "z": 4.00
+          "z": 4000.00
         },
         {
-          "config": "{\"name\":\"f3d69ff2bc9be6f78f14\",\"layouts\":[{\"id\":0,\"position\":{\"x\":991.1025172517783,\"y\":59.58240939490163,\"z\":2,\"width\":289.1926699898884,\"height\":649.5935853541714,\"tabOrder\":2}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"FactMovement.WWI Invoice ID\"},{\"queryRef\":\"FactMovement.WWI Purchase Order ID\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"FactMovement\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"WWI Invoice ID\"},\"Name\":\"FactMovement.WWI Invoice ID\",\"NativeReferenceName\":\"WWI Invoice ID\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"WWI Purchase Order ID\"},\"Name\":\"FactMovement.WWI Purchase Order ID\",\"NativeReferenceName\":\"WWI Purchase Order ID\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"WWI Purchase Order ID\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"columnFormatting\":[{\"properties\":{\"styleHeader\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"styleTotal\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}},\"selector\":{\"metadata\":\"FactMovement.WWI Invoice ID\"}}]},\"vcObjects\":{\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.3}}}}}}}]}}}",
+          "config": "{\"name\":\"f3d69ff2bc9be6f78f14\",\"layouts\":[{\"id\":0,\"position\":{\"x\":991.1025172517783,\"y\":59.58240939490163,\"z\":2000,\"width\":289.1926699898884,\"height\":649.5935853541714,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"FactMovement.WWI Invoice ID\"},{\"queryRef\":\"FactMovement.WWI Purchase Order ID\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"FactMovement\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"WWI Invoice ID\"},\"Name\":\"FactMovement.WWI Invoice ID\",\"NativeReferenceName\":\"WWI Invoice ID\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"WWI Purchase Order ID\"},\"Name\":\"FactMovement.WWI Purchase Order ID\",\"NativeReferenceName\":\"WWI Purchase Order ID\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"WWI Purchase Order ID\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"columnFormatting\":[{\"properties\":{\"styleHeader\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"styleTotal\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}},\"selector\":{\"metadata\":\"FactMovement.WWI Invoice ID\"}}]},\"vcObjects\":{\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.3}}}}}}}]}}}",
           "filters": "[]",
           "height": 649.59,
           "width": 289.19,
           "x": 991.10,
           "y": 59.58,
-          "z": 2.00
+          "z": 2000.00
         }
       ],
       "width": 1280.00
