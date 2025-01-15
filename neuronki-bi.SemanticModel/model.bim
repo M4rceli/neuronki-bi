@@ -8,7 +8,7 @@
       },
       {
         "name": "PBIDesktopVersion",
-        "value": "2.138.1452.0 (24.11)"
+        "value": "2.136.1202.0 (24.09)"
       },
       {
         "name": "__PBI_TimeIntelligenceEnabled",
@@ -16,7 +16,7 @@
       },
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"DimDate\",\"DimTransactionType\",\"DimStockItem\",\"DimSupplier\",\"DimCustomer\",\"FactMovement\"]"
+        "value": "[\"DimDate\",\"DimTransactionType\",\"DimStockItem\",\"DimSupplier\",\"DimCustomer\",\"FactMovement\",\"_Measures\"]"
       }
     ],
     "culture": "en-US",
@@ -389,6 +389,21 @@
             "lineageTag": "5f47910c-0f5b-4787-9e5a-392a4f5a8229",
             "sourceColumn": "ISO Week Number",
             "summarizeBy": "sum"
+          },
+          {
+            "name": "Quarter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": "\"Q\" & QUARTER(DimDate[Date])",
+            "isDataTypeInferred": true,
+            "lineageTag": "54f30d2e-89e5-469a-9f92-94058a7ff4c9",
+            "summarizeBy": "none",
+            "type": "calculated"
           }
         ],
         "dataCategory": "Time",
@@ -403,16 +418,22 @@
                 "ordinal": 0
               },
               {
+                "name": "Quarter",
+                "column": "Quarter",
+                "lineageTag": "d176f7d8-6217-4ae4-88b0-d62bed7c0986",
+                "ordinal": 1
+              },
+              {
                 "name": "Month",
                 "column": "Month",
                 "lineageTag": "55448af0-5300-4fdc-a85a-2f996a98e59a",
-                "ordinal": 1
+                "ordinal": 2
               },
               {
                 "name": "Day",
                 "column": "Day",
                 "lineageTag": "9725f8be-a7b5-48cd-90bb-c13edd3c8a20",
-                "ordinal": 2
+                "ordinal": 3
               }
             ],
             "lineageTag": "3f762375-6161-4175-b0ad-66a4f80dbeb7"
@@ -746,6 +767,30 @@
                 "relationship": "3a826968-d2f7-4a7b-94aa-de6d37bbb0ac"
               }
             ]
+          },
+          {
+            "name": "Is_Used",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": [
+              "",
+              "IF(",
+              "    COUNTROWS(",
+              "        RELATEDTABLE(FactMovement)",
+              "    ) > 0,",
+              "    \"Yes\",",
+              "    \"No\"",
+              ")"
+            ],
+            "isDataTypeInferred": true,
+            "lineageTag": "7c4c954e-3492-49d2-ba09-12988e534fcd",
+            "summarizeBy": "none",
+            "type": "calculated"
           }
         ],
         "lineageTag": "79401bfe-b7c4-40d3-8ad4-bae842827a07",
@@ -3272,6 +3317,117 @@
                 "    #\"Usunięto kolumny\" = Table.RemoveColumns(Fact_Movement,{\"Lineage Key\"})",
                 "in",
                 "    #\"Usunięto kolumny\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "_Measures",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "changedProperties": [
+          {
+            "property": "Name"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Column1",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "93d815c5-74b7-4d06-bd2f-f71aeefb3b88",
+            "sourceColumn": "Column1",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "038406c1-e6a4-4a0b-8e67-027357c761a3",
+        "measures": [
+          {
+            "name": "Transactions_number",
+            "expression": "COUNTROWS(FACTMOVEMENT)",
+            "formatString": "0",
+            "lineageTag": "05753681-a529-4acc-96c0-b661e47c700d"
+          },
+          {
+            "name": "Transactions_Quantity_Sum",
+            "expression": "SUM(FactMovement[Quantity])",
+            "formatString": "0",
+            "lineageTag": "15caf5fd-f97d-43f7-9645-391b8fd7b6ef"
+          },
+          {
+            "name": "Total_Inbound",
+            "expression": "CALCULATE(SUM(FactMovement[Quantity]), FactMovement[Quantity] > 0)",
+            "formatString": "0",
+            "lineageTag": "1a07f4b7-3711-4707-98b4-b69f40aad160"
+          },
+          {
+            "name": "Total_Outbound",
+            "expression": "CALCULATE(SUM(FactMovement[Quantity]), FactMovement[Quantity] < 0)",
+            "formatString": "0",
+            "lineageTag": "950de269-7707-48b0-9058-d8d2a8e02bc6"
+          },
+          {
+            "name": "Total_Movement",
+            "expression": "SUMX(FactMovement, ABS(FactMovement[Quantity]))",
+            "formatString": "0",
+            "lineageTag": "3a1834ef-10f2-41ce-ba72-a27afe68a267"
+          },
+          {
+            "name": "Average_Movement",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "[Total_Movement]/[Transactions_number]",
+            "lineageTag": "896ef8ab-259d-4a42-adc7-5d43d265c4a4"
+          },
+          {
+            "name": "Movement_Number",
+            "expression": "COUNTROWS(FILTER(FactMovement, FactMovement[Quantity] <> 0))",
+            "formatString": "0",
+            "lineageTag": "d723a6ba-4868-4951-9289-46621c5a2576"
+          },
+          {
+            "name": "Top_Product",
+            "expression": [
+              "CONCATENATEX(",
+              "    TOPN(",
+              "        1, ",
+              "        VALUES('DimStockItem'[Stock Item]), ",
+              "        [Movement_Number], ",
+              "        DESC",
+              "    ), ",
+              "    'DimStockItem'[Stock Item] & \" (\" & [Movement_Number] & \" movements)\", ",
+              "    \", \"",
+              ")"
+            ],
+            "lineageTag": "edf099de-7ddb-488f-a096-eea6f440e5f0"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "_Measures",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i44FAA==\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}})",
+                "in",
+                "    #\"Changed Type\""
               ],
               "type": "m"
             }
