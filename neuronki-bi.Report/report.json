@@ -133,7 +133,10 @@
           "x": 900.47,
           "y": 0.00,
           "z": 8000.00
-
+        }
+      ]
+    },
+    {
       "displayName": "Overview of transactions by type",
       "displayOption": 1,
       "filters": "[]",
