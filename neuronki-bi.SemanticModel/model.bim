@@ -3415,6 +3415,54 @@
               ")"
             ],
             "lineageTag": "edf099de-7ddb-488f-a096-eea6f440e5f0"
+          },
+          {
+            "name": "Total_Volume_of_Supply",
+            "expression": [
+              "",
+              "SUMX(",
+              "    FILTER(",
+              "        FACTMOVEMENT,",
+              "        FactMovement[Quantity] > 0 && FactMovement[Supplier Key] > 0",
+              "    ),",
+              "    FactMovement[Quantity]",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "c45e9503-b447-403c-839e-868d876d5824"
+          },
+          {
+            "name": "Total_Customer",
+            "expression": [
+              "",
+              "SUMX(",
+              "    FILTER(",
+              "        FACTMOVEMENT,",
+              "        FACTMOVEMENT[Quantity] < 0 && FactMovement[Customer Key] > 0",
+              "    ),",
+              "    ABS(FACTMOVEMENT[Quantity])",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "44dd1678-ad06-4a2a-a1c1-6acbff04405d"
+          },
+          {
+            "name": "Total_Volume_Top10",
+            "expression": [
+              "",
+              "IF(",
+              "    RANKX(",
+              "        ALL(DimSupplier[Supplier]),",
+              "        [Total_Volume_of_Supply], ",
+              "        , ",
+              "        DESC",
+              "    ) <= 10,",
+              "    [Total_Volume_of_Supply],",
+              "    BLANK()",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "7f341c14-d7e7-403f-917e-510448e01f3b"
           }
         ],
         "partitions": [
