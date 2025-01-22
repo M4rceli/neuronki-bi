@@ -3279,6 +3279,31 @@
           }
         ],
         "lineageTag": "f1b1f5d1-5995-4e71-8c43-f18fe6c52bbc",
+        "measures": [
+          {
+            "name": "Transaction Value",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "SUMX(",
+              "    FactMovement,",
+              "    FactMovement[Quantity] * RELATED(DimStockItem[Unit Price])",
+              ")"
+            ],
+            "lineageTag": "3b2f34e6-a934-4a02-a45c-c1453e79f977"
+          },
+          {
+            "name": "Number of Transactions",
+            "expression": "COUNTROWS(FactMovement)",
+            "formatString": "0",
+            "lineageTag": "b57c7551-b79e-428b-8c17-32f115a58520"
+          }
+        ],
         "partitions": [
           {
             "name": "FactMovement",
@@ -3390,6 +3415,54 @@
               ")"
             ],
             "lineageTag": "edf099de-7ddb-488f-a096-eea6f440e5f0"
+          },
+          {
+            "name": "Total_Volume_of_Supply",
+            "expression": [
+              "",
+              "SUMX(",
+              "    FILTER(",
+              "        FACTMOVEMENT,",
+              "        FactMovement[Quantity] > 0 && FactMovement[Supplier Key] > 0",
+              "    ),",
+              "    FactMovement[Quantity]",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "c45e9503-b447-403c-839e-868d876d5824"
+          },
+          {
+            "name": "Total_Customer",
+            "expression": [
+              "",
+              "SUMX(",
+              "    FILTER(",
+              "        FACTMOVEMENT,",
+              "        FACTMOVEMENT[Quantity] < 0 && FactMovement[Customer Key] > 0",
+              "    ),",
+              "    ABS(FACTMOVEMENT[Quantity])",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "44dd1678-ad06-4a2a-a1c1-6acbff04405d"
+          },
+          {
+            "name": "Total_Volume_Top10",
+            "expression": [
+              "",
+              "IF(",
+              "    RANKX(",
+              "        ALL(DimSupplier[Supplier]),",
+              "        [Total_Volume_of_Supply], ",
+              "        , ",
+              "        DESC",
+              "    ) <= 10,",
+              "    [Total_Volume_of_Supply],",
+              "    BLANK()",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "7f341c14-d7e7-403f-917e-510448e01f3b"
           }
         ],
         "partitions": [

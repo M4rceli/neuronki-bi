@@ -1,0 +1,146 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 129.37401010576832,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 498.51689705668957,
+            "y": 0
+          },
+          "nodeIndex": "DimSalesperson",
+          "nodeLineageTag": "f73151d4-995f-4a6a-8d83-62d15aeaee2f",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 37.552388997397429,
+            "y": -10
+          },
+          "nodeIndex": "DimProduct",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 1489.7949093194129,
+            "y": 400.19098198619105
+          },
+          "nodeIndex": "Employee_csv",
+          "nodeLineageTag": "704c1056-32e9-473d-a66a-ea83c88632e7",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 668.794909319413,
+            "y": 588.29288587391216
+          },
+          "nodeIndex": "DimCity",
+          "nodeLineageTag": "d81eb89b-8aca-4ad5-a8db-9bce3c5be58d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 294.17732569660416,
+            "y": 690.3819639723821
+          },
+          "nodeIndex": "DimCustomer",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 924.794909319413,
+            "y": 407.19098198619105
+          },
+          "nodeIndex": "DimCategory",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 460.028992841133
+          },
+          "nodeIndex": "DimDate",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 301.30501996286944,
+            "y": 340.20730295758693
+          },
+          "nodeIndex": "FactSale",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 1773.7949093194129,
+            "y": 400.19098198619105
+          },
+          "nodeIndex": "_Measures",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 937.58625734906,
+            "y": 0
+          },
+          "nodeIndex": "DimSalespersonTarget",
+          "nodeLineageTag": "cfade8f2-0b4d-44f0-8cc9-98821e91661c",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 10
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 49.72261543677439,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}
