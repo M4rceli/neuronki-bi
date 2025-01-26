@@ -52,7 +52,7 @@
         ],
         "expression": [
           "let",
-          "    Source = Csv.Document(File.Contents(\"C:\\Users\\olacz\\Documents\\Ola\\STUDIA - matematyka stosowana II st\\III semestr\\wizualizacja danych i business inteligence\\laby\\2\\Lab - dane-20241011 (1)\\Dodatkowe dane\\Color Formats.csv\"),[Delimiter=\";\", Columns=3, Encoding=1250, QuoteStyle=QuoteStyle.None]),",
+          "    Source = Csv.Document(File.Contents(\"C:\\Users\\hania\\Downloads\\Dodatkowe dane\\Color Formats.csv\"),[Delimiter=\";\", Columns=3, Encoding=1250, QuoteStyle=QuoteStyle.None]),",
           "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}, {\"Column2\", type text}, {\"Column3\", type text}}),",
           "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Changed Type\", [PromoteAllScalars=true]),",
           "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Color\", type text}, {\"Background Color Format\", type text}, {\"Font Color Format\", type text}})",
@@ -114,7 +114,6 @@
         ],
         "fromColumn": "Customer Key",
         "fromTable": "FactSale",
-        "isActive": false,
         "toColumn": "Customer Key",
         "toTable": "DimCustomer"
       },
@@ -486,7 +485,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Sql.Database(\"DESKTOP-3545GNA\", \"WideWorldImportersDW\"),",
+                "    Source = Sql.Database(\"localhost\", \"WideWorldImportersDW\"),",
                 "    Dimension_Date = Source{[Schema=\"Dimension\",Item=\"Date\"]}[Data]",
                 "in",
                 "    Dimension_Date"
@@ -763,7 +762,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Sql.Database(\"DESKTOP-3545GNA\", \"WideWorldImportersDW\"),",
+                "    Source = Sql.Database(\"localhost\", \"WideWorldImportersDW\"),",
                 "    Dimension_City = Source{[Schema=\"Dimension\",Item=\"City\"]}[Data],",
                 "    #\"Removed Top Rows\" = Table.Skip(Dimension_City,1),",
                 "    #\"Removed Columns\" = Table.RemoveColumns(#\"Removed Top Rows\",{\"Lineage Key\", \"Fact.Order\", \"Fact.Sale\"}),",
@@ -808,7 +807,7 @@
             "isHidden": true,
             "lineageTag": "067915df-f955-4f36-8371-c95df634ba85",
             "sourceColumn": "Customer Key",
-            "summarizeBy": "count"
+            "summarizeBy": "none"
           },
           {
             "name": "WWI Customer ID",
@@ -822,7 +821,7 @@
             "formatString": "0",
             "lineageTag": "a1f121e1-4ab0-4085-b1b9-628313777318",
             "sourceColumn": "WWI Customer ID",
-            "summarizeBy": "count"
+            "summarizeBy": "none"
           },
           {
             "name": "Customer",
@@ -945,7 +944,7 @@
             "formatString": "0",
             "lineageTag": "b1787142-94e3-4437-a99b-414b8ce1524f",
             "sourceColumn": "Lineage Key",
-            "summarizeBy": "count"
+            "summarizeBy": "none"
           }
         ],
         "lineageTag": "bf96f8e3-9873-4995-a84a-1d493f06103f",
@@ -956,7 +955,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Sql.Database(\"DESKTOP-3545GNA\", \"WideWorldImportersDW\"),",
+                "    Source = Sql.Database(\"localhost\", \"WideWorldImportersDW\"),",
                 "    Dimension_Customer = Source{[Schema=\"Dimension\",Item=\"Customer\"]}[Data],",
                 "    #\"Removed Top Rows\" = Table.Skip(Dimension_Customer,1),",
                 "    #\"Removed Columns\" = Table.RemoveColumns(#\"Removed Top Rows\",{\"Fact.Movement\", \"Fact.Sale(Customer Key)\", \"Fact.Order\", \"Fact.Sale(Customer Key) 2\", \"Fact.Transaction(Customer Key)\", \"Fact.Transaction(Customer Key) 2\"})",
@@ -1131,7 +1130,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Sql.Database(\"DESKTOP-3545GNA\", \"WideWorldImportersDW\"),",
+                "    Source = Sql.Database(\"localhost\", \"WideWorldImportersDW\"),",
                 "    Dimension_Employee = Source{[Schema=\"Dimension\",Item=\"Employee\"]}[Data],",
                 "    #\"Filtered Rows\" = Table.SelectRows(Dimension_Employee, each ([Is Salesperson] = true)),",
                 "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Filtered Rows\",{\"Employee Key\", \"WWI Employee ID\", \"Employee\", \"Valid From\", \"Valid To\"}),",
@@ -1331,7 +1330,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Sql.Database(\"DESKTOP-3545GNA\", \"WideWorldImportersDW\"),",
+                "    Source = Sql.Database(\"localhost\", \"WideWorldImportersDW\"),",
                 "    #\"Dimension_Stock Item\" = Source{[Schema=\"Dimension\",Item=\"Stock Item\"]}[Data],",
                 "    #\"Removed Top Rows\" = Table.Skip(#\"Dimension_Stock Item\",1),",
                 "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Removed Top Rows\",{\"Stock Item Key\", \"WWI Stock Item ID\", \"Stock Item\", \"Color\", \"Unit Price\", \"Recommended Retail Price\"}),",
@@ -1414,7 +1413,7 @@
             "isHidden": true,
             "lineageTag": "2076b564-c836-4d40-876e-36bf39d4c78e",
             "sourceColumn": "Customer Key",
-            "summarizeBy": "count"
+            "summarizeBy": "none"
           },
           {
             "name": "Invoice Date",
@@ -1719,7 +1718,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Sql.Database(\"DESKTOP-3545GNA\", \"WideWorldImportersDW\"),",
+                "    Source = Sql.Database(\"localhost\", \"WideWorldImportersDW\"),",
                 "    Fact_Sale = Source{[Schema=\"Fact\",Item=\"Sale\"]}[Data],",
                 "    #\"Removed Other Columns\" = Table.SelectColumns(Fact_Sale,{\"Sale Key\", \"City Key\", \"Customer Key\", \"Stock Item Key\", \"Invoice Date Key\", \"Delivery Date Key\", \"Salesperson Key\", \"WWI Invoice ID\", \"Quantity\", \"Unit Price\", \"Tax Rate\", \"Total Excluding Tax\", \"Tax Amount\", \"Profit\", \"Total Including Tax\", \"Total Dry Items\", \"Total Chiller Items\", \"Dimension.City\", \"Dimension.Customer(Bill To Customer Key)\", \"Dimension.Customer(Customer Key)\", \"Dimension.Date(Delivery Date Key)\", \"Dimension.Date(Invoice Date Key)\", \"Dimension.Employee\", \"Dimension.Stock Item\"}),",
                 "    #\"Added Conditional Column\" = Table.AddColumn(#\"Removed Other Columns\", \"Profit case\", each if [Profit] >= 0 then \"Positive\" else \"Negative\"),",
@@ -1833,7 +1832,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Csv.Document(File.Contents(\"C:\\Users\\olacz\\Documents\\Ola\\STUDIA - matematyka stosowana II st\\III semestr\\wizualizacja danych i business inteligence\\laby\\2\\Lab - dane-20241011 (1)\\Dodatkowe dane\\SalespersonTargets.csv\"),[Delimiter=\";\", Columns=14, Encoding=1250, QuoteStyle=QuoteStyle.None]),",
+                "    Source = Csv.Document(File.Contents(\"C:\\Users\\hania\\Downloads\\Dodatkowe dane\\SalespersonTargets.csv\"),[Delimiter=\";\", Columns=14, Encoding=1250, QuoteStyle=QuoteStyle.None]),",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
                 "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Year\", Int64.Type}, {\"EmployeeID\", Int64.Type}, {\"M01\", Int64.Type}, {\"M02\", Int64.Type}, {\"M03\", Int64.Type}, {\"M04\", Int64.Type}, {\"M05\", Int64.Type}, {\"M06\", Int64.Type}, {\"M07\", Int64.Type}, {\"M08\", Int64.Type}, {\"M09\", Int64.Type}, {\"M10\", Int64.Type}, {\"M11\", Int64.Type}, {\"M12\", Int64.Type}}),",
                 "    #\"Unpivoted Other Columns\" = Table.UnpivotOtherColumns(#\"Changed Type\", {\"EmployeeID\", \"Year\"}, \"Attribute\", \"Value\"),",
@@ -1943,7 +1942,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Csv.Document(File.Contents(\"C:\\Users\\olacz\\Documents\\Ola\\STUDIA - matematyka stosowana II st\\III semestr\\wizualizacja danych i business inteligence\\laby\\2\\Lab - dane-20241011 (1)\\Dodatkowe dane\\Employee_csv.csv\"),[Delimiter=\";\", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.None]),",
+                "    Source = Csv.Document(File.Contents(\"C:\\Users\\hania\\Downloads\\Dodatkowe dane\\Employee_csv.csv\"),[Delimiter=\";\", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.None]),",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
                 "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"WWI Employee ID\", Int64.Type}, {\"Employee\", type text}, {\"JobTitle\", type text}, {\"BusinessUnit\", type text}, {\"Age\", Int64.Type}})",
                 "in",
@@ -2034,7 +2033,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Excel.Workbook(File.Contents(\"C:\\Users\\olacz\\Documents\\Ola\\STUDIA - matematyka stosowana II st\\III semestr\\wizualizacja danych i business inteligence\\laby\\2\\Lab - dane-20241011 (1)\\Dodatkowe dane\\Category_dictionary.xlsx\"), null, true),",
+                "    Source = Excel.Workbook(File.Contents(\"C:\\Users\\hania\\Downloads\\Dodatkowe dane\\Category_dictionary.xlsx\"), null, true),",
                 "    Arkusz1_Sheet = Source{[Item=\"Arkusz1\",Kind=\"Sheet\"]}[Data],",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Arkusz1_Sheet, [PromoteAllScalars=true]),",
                 "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"WWI Stock Item ID\", Int64.Type}, {\"Description\", type text}, {\"Category\", type text}})",
@@ -2471,10 +2470,7 @@
                 "value": "{\"isGeneralNumber\":true}"
               }
             ],
-            "expression": [
-              "",
-              "SUM('FactSale'[Total Including Tax])"
-            ],
+            "expression": "SUM(FactSale[Total Including Tax])",
             "lineageTag": "b5f1b8a9-da72-4dd9-93ea-434cc8a9f0de"
           },
           {
@@ -2519,6 +2515,63 @@
             ],
             "expression": "[YTD Total Net Sales]/[Target YTD]",
             "lineageTag": "5ab1404f-569e-4707-95e9-00872dae855b"
+          },
+          {
+            "name": "Total Sales",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "CALCULATE(SUM(FactSale[Total Including Tax]), FactSale[Profit case]=\"Positive\")",
+            "lineageTag": "7621ae67-c1d5-4725-834e-809467f00694"
+          },
+          {
+            "name": "Average Order Value",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "[Total Sales] / COUNT(FactSale[WWI Invoice ID])",
+            "lineageTag": "e0ee0d18-8d2f-404e-a3a7-143513e4c97d"
+          },
+          {
+            "name": "Potential",
+            "expression": "IF([Average Order Value] > 1000, \"High\", \"Low\")",
+            "lineageTag": "7c4dbc5a-f13a-4555-b28b-fb9f31ce28a2"
+          },
+          {
+            "name": "Growth Potential",
+            "expression": "IF(COUNT(FactSale[WWI Invoice ID]) < 350 && [Average Order Value] > 900, \"Potential for Growth\", \"Stable\")",
+            "lineageTag": "60cc6d5c-838d-4028-8fcc-aa2a1053fc4b"
+          },
+          {
+            "name": "Max Total Sales",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "    MAXX(",
+              "        ALL(DimSalesperson[Salesperson]),",
+              "        CALCULATE(SUM(FactSale[Total Including Tax])-1, FactSale[Profit Case]=\"Positive\"))"
+            ],
+            "lineageTag": "a462bfd4-38e4-4048-8184-79e64aa14572"
+          },
+          {
+            "name": "Is Best Salesperson",
+            "expression": [
+              "",
+              "IF([Total Sales] = [Max Total Sales], 1, 0)"
+            ],
+            "formatString": "0",
+            "lineageTag": "ad46636a-e418-442b-a860-6bf7e2fd7089"
           }
         ],
         "partitions": [
