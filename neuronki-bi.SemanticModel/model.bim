@@ -2061,6 +2061,7 @@
                 "value": "Automatic"
               }
             ],
+            "dataCategory": "PostalCode",
             "dataType": "string",
             "lineageTag": "0c0e630f-96a9-432a-80f1-aeb22cae7da3",
             "sourceColumn": "Postal Code",
@@ -2124,6 +2125,7 @@
                 "value": "Automatic"
               }
             ],
+            "dataCategory": "StateOrProvince",
             "dataType": "string",
             "lineageTag": "6762bdd4-0fb2-4688-bf8b-d0b226b63ea3",
             "sourceColumn": "State",
@@ -2137,6 +2139,7 @@
                 "value": "Automatic"
               }
             ],
+            "dataCategory": "City",
             "dataType": "string",
             "lineageTag": "1076e302-31d1-4ffb-adf2-c8beddde5782",
             "sourceColumn": "City",
@@ -2693,6 +2696,7 @@
                 "value": "Automatic"
               }
             ],
+            "dataCategory": "PostalCode",
             "dataType": "string",
             "lineageTag": "02f26549-0739-48ae-b78c-6f64998a69f3",
             "sourceColumn": "Postal Code",
@@ -2756,6 +2760,7 @@
                 "value": "Automatic"
               }
             ],
+            "dataCategory": "City",
             "dataType": "string",
             "lineageTag": "075e0620-efc1-48a2-ac0c-613125a555c1",
             "sourceColumn": "City",
@@ -2782,6 +2787,7 @@
                 "value": "Automatic"
               }
             ],
+            "dataCategory": "StateOrProvince",
             "dataType": "string",
             "lineageTag": "2d064902-621e-4041-85ab-aa5a886385cf",
             "sourceColumn": "State Full",
