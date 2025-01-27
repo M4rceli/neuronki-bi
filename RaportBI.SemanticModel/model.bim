@@ -12,7 +12,7 @@
       },
       {
         "name": "PBIDesktopVersion",
-        "value": "2.136.1202.0 (24.09)"
+        "value": "2.139.1678.0 (24.12)+2a034ab280bddf891eb7bb9ebfe6996f9c3a3196"
       },
       {
         "name": "PBI_ProTooling",
@@ -52,7 +52,7 @@
         ],
         "expression": [
           "let",
-          "    Source = Csv.Document(File.Contents(\"C:\\Users\\Marcel\\Desktop\\Studia 2\\Semestr 3\\Wizualizacja danych i BI\\Color Formats.csv\"),[Delimiter=\";\", Columns=3, Encoding=1250, QuoteStyle=QuoteStyle.None]),",
+          "    Source = Csv.Document(File.Contents(\"C:\\Users\\olacz\\Documents\\Ola\\STUDIA - matematyka stosowana II st\\III semestr\\wizualizacja danych i business inteligence\\laby\\2\\Lab - dane-20241011 (1)\\Dodatkowe dane\\Color Formats.csv\"),[Delimiter=\";\", Columns=3, Encoding=1250, QuoteStyle=QuoteStyle.None]),",
           "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}, {\"Column2\", type text}, {\"Column3\", type text}}),",
           "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Changed Type\", [PromoteAllScalars=true]),",
           "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Color\", type text}, {\"Background Color Format\", type text}, {\"Font Color Format\", type text}})",
@@ -176,11 +176,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          }
-        ],
-        "changedProperties": [
-          {
-            "property": "Name"
           }
         ],
         "columns": [
@@ -491,7 +486,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Sql.Database(\"localhost\", \"WideWorldImportersDW\"),",
+                "    Source = Sql.Database(\"DESKTOP-3545GNA\", \"WideWorldImportersDW\"),",
                 "    Dimension_Date = Source{[Schema=\"Dimension\",Item=\"Date\"]}[Data]",
                 "in",
                 "    Dimension_Date"
@@ -586,7 +581,7 @@
                 "value": "Automatic"
               }
             ],
-            "dataCategory": "County",
+            "dataCategory": "Country",
             "dataType": "string",
             "displayFolder": "Regions",
             "lineageTag": "30761662-bfc1-47cd-b467-bf075d452de0",
@@ -640,6 +635,7 @@
                 "value": "Automatic"
               }
             ],
+            "dataCategory": "County",
             "dataType": "string",
             "lineageTag": "6837a720-5c8a-4d6e-9e46-2273298e145d",
             "sourceColumn": "Subregion",
@@ -699,6 +695,32 @@
             "lineageTag": "6b9b874b-b433-48dd-adeb-67eb4f4744ba",
             "sourceColumn": "Valid To",
             "summarizeBy": "none"
+          },
+          {
+            "name": "Longitude",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c7cd056e-192a-4a72-b793-ac5172d18bb3",
+            "sourceColumn": "Longitude",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Latitude",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f5c0440a-0320-4c22-9ee0-1f9aa9271994",
+            "sourceColumn": "Latitude",
+            "summarizeBy": "none"
           }
         ],
         "hierarchies": [
@@ -722,6 +744,12 @@
                 "column": "City",
                 "lineageTag": "72d4c083-6abd-443e-82a3-bdf025f1f364",
                 "ordinal": 2
+              },
+              {
+                "name": "Subregion",
+                "column": "Subregion",
+                "lineageTag": "3b1c74e4-02b3-4101-b500-bd28afa7edf1",
+                "ordinal": 3
               }
             ],
             "lineageTag": "d895a35e-d961-41e8-baf9-7fe0f0b41ee8"
@@ -735,12 +763,14 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Sql.Database(\"localhost\", \"WideWorldImportersDW\"),",
+                "    Source = Sql.Database(\"DESKTOP-3545GNA\", \"WideWorldImportersDW\"),",
                 "    Dimension_City = Source{[Schema=\"Dimension\",Item=\"City\"]}[Data],",
                 "    #\"Removed Top Rows\" = Table.Skip(Dimension_City,1),",
-                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Removed Top Rows\",{\"Lineage Key\", \"Fact.Order\", \"Fact.Sale\"})",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Removed Top Rows\",{\"Lineage Key\", \"Fact.Order\", \"Fact.Sale\"}),",
+                "    #\"Wstawiony tekst między ogranicznikami\" = Table.AddColumn(#\"Removed Columns\", \"Longitude\", each Text.BetweenDelimiters([Location], \"(\", \" \"), type text),",
+                "    #\"Wstawiony tekst między ogranicznikami1\" = Table.AddColumn(#\"Wstawiony tekst między ogranicznikami\", \"Latitude\", each Text.BetweenDelimiters([Location], \" \", \")\", 1, 0), type text)",
                 "in",
-                "    #\"Removed Columns\""
+                "    #\"Wstawiony tekst między ogranicznikami1\""
               ],
               "type": "m"
             }
@@ -926,7 +956,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Sql.Database(\"localhost\", \"WideWorldImportersDW\"),",
+                "    Source = Sql.Database(\"DESKTOP-3545GNA\", \"WideWorldImportersDW\"),",
                 "    Dimension_Customer = Source{[Schema=\"Dimension\",Item=\"Customer\"]}[Data],",
                 "    #\"Removed Top Rows\" = Table.Skip(Dimension_Customer,1),",
                 "    #\"Removed Columns\" = Table.RemoveColumns(#\"Removed Top Rows\",{\"Fact.Movement\", \"Fact.Sale(Customer Key)\", \"Fact.Order\", \"Fact.Sale(Customer Key) 2\", \"Fact.Transaction(Customer Key)\", \"Fact.Transaction(Customer Key) 2\"})",
@@ -1101,7 +1131,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Sql.Database(\"localhost\", \"WideWorldImportersDW\"),",
+                "    Source = Sql.Database(\"DESKTOP-3545GNA\", \"WideWorldImportersDW\"),",
                 "    Dimension_Employee = Source{[Schema=\"Dimension\",Item=\"Employee\"]}[Data],",
                 "    #\"Filtered Rows\" = Table.SelectRows(Dimension_Employee, each ([Is Salesperson] = true)),",
                 "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Filtered Rows\",{\"Employee Key\", \"WWI Employee ID\", \"Employee\", \"Valid From\", \"Valid To\"}),",
@@ -1301,7 +1331,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Sql.Database(\"localhost\", \"WideWorldImportersDW\"),",
+                "    Source = Sql.Database(\"DESKTOP-3545GNA\", \"WideWorldImportersDW\"),",
                 "    #\"Dimension_Stock Item\" = Source{[Schema=\"Dimension\",Item=\"Stock Item\"]}[Data],",
                 "    #\"Removed Top Rows\" = Table.Skip(#\"Dimension_Stock Item\",1),",
                 "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Removed Top Rows\",{\"Stock Item Key\", \"WWI Stock Item ID\", \"Stock Item\", \"Color\", \"Unit Price\", \"Recommended Retail Price\"}),",
@@ -1689,7 +1719,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Sql.Database(\"localhost\", \"WideWorldImportersDW\"),",
+                "    Source = Sql.Database(\"DESKTOP-3545GNA\", \"WideWorldImportersDW\"),",
                 "    Fact_Sale = Source{[Schema=\"Fact\",Item=\"Sale\"]}[Data],",
                 "    #\"Removed Other Columns\" = Table.SelectColumns(Fact_Sale,{\"Sale Key\", \"City Key\", \"Customer Key\", \"Stock Item Key\", \"Invoice Date Key\", \"Delivery Date Key\", \"Salesperson Key\", \"WWI Invoice ID\", \"Quantity\", \"Unit Price\", \"Tax Rate\", \"Total Excluding Tax\", \"Tax Amount\", \"Profit\", \"Total Including Tax\", \"Total Dry Items\", \"Total Chiller Items\", \"Dimension.City\", \"Dimension.Customer(Bill To Customer Key)\", \"Dimension.Customer(Customer Key)\", \"Dimension.Date(Delivery Date Key)\", \"Dimension.Date(Invoice Date Key)\", \"Dimension.Employee\", \"Dimension.Stock Item\"}),",
                 "    #\"Added Conditional Column\" = Table.AddColumn(#\"Removed Other Columns\", \"Profit case\", each if [Profit] >= 0 then \"Positive\" else \"Negative\"),",
@@ -1803,7 +1833,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Csv.Document(File.Contents(\"C:\\Users\\Marcel\\Desktop\\Studia 2\\Semestr 3\\Wizualizacja danych i BI\\SalespersonTargets.csv\"),[Delimiter=\";\", Columns=14, Encoding=1250, QuoteStyle=QuoteStyle.None]),",
+                "    Source = Csv.Document(File.Contents(\"C:\\Users\\olacz\\Documents\\Ola\\STUDIA - matematyka stosowana II st\\III semestr\\wizualizacja danych i business inteligence\\laby\\2\\Lab - dane-20241011 (1)\\Dodatkowe dane\\SalespersonTargets.csv\"),[Delimiter=\";\", Columns=14, Encoding=1250, QuoteStyle=QuoteStyle.None]),",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
                 "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Year\", Int64.Type}, {\"EmployeeID\", Int64.Type}, {\"M01\", Int64.Type}, {\"M02\", Int64.Type}, {\"M03\", Int64.Type}, {\"M04\", Int64.Type}, {\"M05\", Int64.Type}, {\"M06\", Int64.Type}, {\"M07\", Int64.Type}, {\"M08\", Int64.Type}, {\"M09\", Int64.Type}, {\"M10\", Int64.Type}, {\"M11\", Int64.Type}, {\"M12\", Int64.Type}}),",
                 "    #\"Unpivoted Other Columns\" = Table.UnpivotOtherColumns(#\"Changed Type\", {\"EmployeeID\", \"Year\"}, \"Attribute\", \"Value\"),",
@@ -1913,7 +1943,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Csv.Document(File.Contents(\"C:\\Users\\Marcel\\Desktop\\Studia 2\\Semestr 3\\Wizualizacja danych i BI\\Employee_csv.csv\"),[Delimiter=\";\", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.None]),",
+                "    Source = Csv.Document(File.Contents(\"C:\\Users\\olacz\\Documents\\Ola\\STUDIA - matematyka stosowana II st\\III semestr\\wizualizacja danych i business inteligence\\laby\\2\\Lab - dane-20241011 (1)\\Dodatkowe dane\\Employee_csv.csv\"),[Delimiter=\";\", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.None]),",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
                 "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"WWI Employee ID\", Int64.Type}, {\"Employee\", type text}, {\"JobTitle\", type text}, {\"BusinessUnit\", type text}, {\"Age\", Int64.Type}})",
                 "in",
@@ -2004,7 +2034,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Excel.Workbook(File.Contents(\"C:\\Users\\Marcel\\Desktop\\Studia 2\\Semestr 3\\Wizualizacja danych i BI\\Category_dictionary.xlsx\"), null, true),",
+                "    Source = Excel.Workbook(File.Contents(\"C:\\Users\\olacz\\Documents\\Ola\\STUDIA - matematyka stosowana II st\\III semestr\\wizualizacja danych i business inteligence\\laby\\2\\Lab - dane-20241011 (1)\\Dodatkowe dane\\Category_dictionary.xlsx\"), null, true),",
                 "    Arkusz1_Sheet = Source{[Item=\"Arkusz1\",Kind=\"Sheet\"]}[Data],",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Arkusz1_Sheet, [PromoteAllScalars=true]),",
                 "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"WWI Stock Item ID\", Int64.Type}, {\"Description\", type text}, {\"Category\", type text}})",
