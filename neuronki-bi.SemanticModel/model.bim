@@ -8,7 +8,7 @@
       },
       {
         "name": "PBIDesktopVersion",
-        "value": "2.136.1202.0 (24.09)"
+        "value": "2.139.1678.0 (24.12)+2a034ab280bddf891eb7bb9ebfe6996f9c3a3196"
       },
       {
         "name": "__PBI_TimeIntelligenceEnabled",
@@ -5208,7 +5208,8 @@
                   }
                 ]
               },
-              "dim_supplier.is_used": {
+              "dim_supplier.
+              ": {
                 "Definition": {
                   "Binding": {
                     "ConceptualEntity": "DimSupplier",
@@ -15992,12 +15993,6 @@
                 "ordinal": 0
               },
               {
-                "name": "Quarter",
-                "column": "Quarter",
-                "lineageTag": "d176f7d8-6217-4ae4-88b0-d62bed7c0986",
-                "ordinal": 1
-              },
-              {
                 "name": "Month",
                 "column": "Month",
                 "lineageTag": "55448af0-5300-4fdc-a85a-2f996a98e59a",
@@ -16008,6 +16003,12 @@
                 "column": "Day",
                 "lineageTag": "9725f8be-a7b5-48cd-90bb-c13edd3c8a20",
                 "ordinal": 3
+              },
+              {
+                "name": "Quarter",
+                "column": "Quarter",
+                "lineageTag": "d176f7d8-6217-4ae4-88b0-d62bed7c0986",
+                "ordinal": 1
               }
             ],
             "lineageTag": "3f762375-6161-4175-b0ad-66a4f80dbeb7"
@@ -17635,6 +17636,7 @@
                 "value": "Automatic"
               }
             ],
+            "dataCategory": "PostalCode",
             "dataType": "string",
             "lineageTag": "0c0e630f-96a9-432a-80f1-aeb22cae7da3",
             "sourceColumn": "Postal Code",
@@ -17691,28 +17693,36 @@
             ]
           },
           {
-            "name": "Is_Used",
+
+            "name": "State",
+
             "annotations": [
               {
                 "name": "SummarizationSetBy",
                 "value": "Automatic"
               }
             ],
+
+            "dataCategory": "StateOrProvince",
             "dataType": "string",
-            "expression": [
-              "",
-              "IF(",
-              "    COUNTROWS(",
-              "        RELATEDTABLE(FactMovement)",
-              "    ) > 0,",
-              "    \"Yes\",",
-              "    \"No\"",
-              ")"
+            "lineageTag": "6762bdd4-0fb2-4688-bf8b-d0b226b63ea3",
+            "sourceColumn": "State",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "City",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
             ],
-            "isDataTypeInferred": true,
-            "lineageTag": "49d91ccc-e0c2-482b-90e2-34a4f71d393a",
-            "summarizeBy": "none",
-            "type": "calculated"
+            "dataCategory": "City",
+            "dataType": "string",
+            "lineageTag": "1076e302-31d1-4ffb-adf2-c8beddde5782",
+            "sourceColumn": "City",
+            "summarizeBy": "none"
+
           }
         ],
         "lineageTag": "7eba69db-ec4d-42db-914f-1ace2127675a",
@@ -17727,9 +17737,35 @@
                 "    WideWorldImportersDW = Source{[Name=\"WideWorldImportersDW\"]}[Data],",
                 "    Dimension_Supplier = WideWorldImportersDW{[Schema=\"Dimension\",Item=\"Supplier\"]}[Data],",
                 "    #\"Usunięto pierwsze wiersze\" = Table.Skip(Dimension_Supplier,1),",
-                "    #\"Usunięto kolumny\" = Table.RemoveColumns(#\"Usunięto pierwsze wiersze\",{\"Lineage Key\"})",
+                "    #\"Usunięto kolumny\" = Table.RemoveColumns(#\"Usunięto pierwsze wiersze\",{\"Lineage Key\"}),",
+                "    #\"Added Conditional Column\" = Table.AddColumn(#\"Usunięto kolumny\", \"Custom\", each if [Postal Code] = \"07860\" then \"New Jersey\" ",
+                "else if [Postal Code] = \"27906\" then \"North Carolina\" ",
+                "else if [Postal Code] = \"37659\" then \"Tennessee\"",
+                "else if [Postal Code] = \"37770\" then \"Tennessee\" ",
+                "else if [Postal Code] = \"40351\" then \"Kentucky\"",
+                "else if [Postal Code] = \"46077\" then \"Indiana\" ",
+                "else if [Postal Code] = \"56732\" then \"Minnesota\"",
+                "else if [Postal Code] = \"57543\" then \"South Dakota\" ",
+                "else if [Postal Code] = \"64847\" then \"Missouri\"",
+                "else if [Postal Code] = \"94101\" then \"California\" ",
+                "else if [Postal Code] = \"95245\" then \"California\"",
+                "else if [Postal Code] = \"98253\" then \"Washington\" else null, type text),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Added Conditional Column\",{{\"Custom\", \"State\"}}),",
+                "    #\"Added Conditional Column1\" = Table.AddColumn(#\"Renamed Columns\", \"Custom\", each if [Postal Code] = \"07860\" then \"Newton\" ",
+                "else if [Postal Code] = \"27906\" then \"Elizabeth City\" ",
+                "else if [Postal Code] = \"37659\" then \"Jonesborough\"",
+                "else if [Postal Code] = \"37770\" then \"Lancing\" ",
+                "else if [Postal Code] = \"40351\" then \"Morehead\"",
+                "else if [Postal Code] = \"46077\" then \"Zionsville\" ",
+                "else if [Postal Code] = \"56732\" then \"Karlstad\"",
+                "else if [Postal Code] = \"57543\" then \"Kadoka\" ",
+                "else if [Postal Code] = \"64847\" then \"Lanagan\"",
+                "else if [Postal Code] = \"94101\" then \"San Francisco\" ",
+                "else if [Postal Code] = \"95245\" then \"Mokelumne Hill\"",
+                "else if [Postal Code] = \"98253\" then \"Greenbank\" else null, type text),",
+                "    #\"Renamed Columns1\" = Table.RenameColumns(#\"Added Conditional Column1\",{{\"Custom\", \"City\"}})",
                 "in",
-                "    #\"Usunięto kolumny\""
+                "    #\"Renamed Columns1\""
               ],
               "type": "m"
             }
@@ -18239,6 +18275,7 @@
                 "value": "Automatic"
               }
             ],
+            "dataCategory": "PostalCode",
             "dataType": "string",
             "lineageTag": "02f26549-0739-48ae-b78c-6f64998a69f3",
             "sourceColumn": "Postal Code",
@@ -18293,6 +18330,47 @@
                 "relationship": "61b6c48f-833e-475a-b0de-870251fb7a8a"
               }
             ]
+          },
+          {
+            "name": "City",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataCategory": "City",
+            "dataType": "string",
+            "lineageTag": "075e0620-efc1-48a2-ac0c-613125a555c1",
+            "sourceColumn": "City",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "State Short",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "40662429-51ad-4f77-88b1-5dbf3cca1ac5",
+            "sourceColumn": "State Short",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "State Full",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataCategory": "StateOrProvince",
+            "dataType": "string",
+            "lineageTag": "2d064902-621e-4041-85ab-aa5a886385cf",
+            "sourceColumn": "State Full",
+            "summarizeBy": "none"
           }
         ],
         "lineageTag": "e41d82b5-8766-403a-b180-de6bc245cd35",
@@ -18307,9 +18385,71 @@
                 "    WideWorldImportersDW = Source{[Name=\"WideWorldImportersDW\"]}[Data],",
                 "    Dimension_Customer = WideWorldImportersDW{[Schema=\"Dimension\",Item=\"Customer\"]}[Data],",
                 "    #\"Usunięto pierwsze wiersze\" = Table.Skip(Dimension_Customer,1),",
-                "    #\"Usunięto kolumny\" = Table.RemoveColumns(#\"Usunięto pierwsze wiersze\",{\"Category\", \"Lineage Key\"})",
+                "    #\"Usunięto kolumny\" = Table.RemoveColumns(#\"Usunięto pierwsze wiersze\",{\"Category\", \"Lineage Key\"}),",
+                "    #\"Inserted Text Between Delimiters\" = Table.AddColumn(#\"Usunięto kolumny\", \"Text Between Delimiters\", each Text.BetweenDelimiters([Customer], \"(\", \",\"), type text),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Inserted Text Between Delimiters\",{{\"Text Between Delimiters\", \"City\"}}),",
+                "    #\"Added Custom Column\" = Table.AddColumn(#\"Renamed Columns\", \"Custom\", each let splitCustomer = List.Reverse(Splitter.SplitTextByDelimiter(\", \", QuoteStyle.None)([Customer])) in Text.Combine({Text.Reverse(Text.Middle(Text.Reverse(Text.Upper([Customer])), 2, 1)), Text.Middle(Text.Upper(splitCustomer{0}?), 1, 1)}), type text),",
+                "    #\"Renamed Columns1\" = Table.RenameColumns(#\"Added Custom Column\",{{\"Custom\", \"State Short\"}}),",
+                "    #\"Added Conditional Column\" = Table.AddColumn(#\"Renamed Columns1\", \"Custom\", each if [State Short] = \"AL\" then \"Alabama\" ",
+                "else if [State Short] = \"AK\" then \"Alaska\" ",
+                "else if [State Short] = \"AZ\" then \"Arizona\" ",
+                "else if [State Short] = \"AR\" then \"Arkansas\"",
+                "else if [State Short] = \"CA\" then \"California\" ",
+                "else if [State Short] = \"CZ\" then \"Canal Zone\" ",
+                "else if [State Short] = \"CO\" then \"Colorado\"",
+                "else if [State Short] = \"CT\" then \"Connecticut\" ",
+                "else if [State Short] = \"DE\" then \"Delaware\" ",
+                "else if [State Short] = \"DC\" then \"District of Columbia\"",
+                "else if [State Short] = \"FL\" then \"Florida\" ",
+                "else if [State Short] = \"GA\" then \"Georgia\" ",
+                "else if [State Short] = \"GU\" then \"Guam\"",
+                "else if [State Short] = \"HI\" then \"Hawaii\" ",
+                "else if [State Short] = \"ID\" then \"Idaho\" ",
+                "else if [State Short] = \"IL\" then \"Illinois\"",
+                "else if [State Short] = \"IN\" then \"Indiana\" ",
+                "else if [State Short] = \"IA\" then \"Iowa\" ",
+                "else if [State Short] = \"KS\" then \"Kansas\"",
+                "else if [State Short] = \"KY\" then \"Kentucky\" ",
+                "else if [State Short] = \"LA\" then \"Louisiana\" ",
+                "else if [State Short] = \"ME\" then \"Maine\"",
+                "else if [State Short] = \"MD\" then \"Maryland\" ",
+                "else if [State Short] = \"MA\" then \"Massachusetts\" ",
+                "else if [State Short] = \"MI\" then \"Michigan\"",
+                "else if [State Short] = \"MN\" then \"Minnesota\" ",
+                "else if [State Short] = \"MS\" then \"Mississippi\" ",
+                "else if [State Short] = \"MO\" then \"Missouri\"",
+                "else if [State Short] = \"MT\" then \"Montana\" ",
+                "else if [State Short] = \"NE\" then \"Nebraska\" ",
+                "else if [State Short] = \"NV\" then \"Nevada\"",
+                "else if [State Short] = \"NH\" then \"New Hampshire\" ",
+                "else if [State Short] = \"NJ\" then \"New Jersey\" ",
+                "else if [State Short] = \"NM\" then \"New Mexico\"",
+                "else if [State Short] = \"NY\" then \"New York\" ",
+                "else if [State Short] = \"NC\" then \"North Carolina\" ",
+                "else if [State Short] = \"ND\" then \"North Dakota\"",
+                "else if [State Short] = \"OH\" then \"Ohio\" ",
+                "else if [State Short] = \"OK\" then \"Oklahoma\" ",
+                "else if [State Short] = \"OR\" then \"Oregon\"",
+                "else if [State Short] = \"PA\" then \"Pennsylvania\" ",
+                "else if [State Short] = \"PR\" then \"Puerto Rico\" ",
+                "else if [State Short] = \"RI\" then \"Rhode Island\"",
+                "else if [State Short] = \"SC\" then \"South Carolina\" ",
+                "else if [State Short] = \"SD\" then \"South Dakota\" ",
+                "else if [State Short] = \"TN\" then \"Tennessee\"",
+                "else if [State Short] = \"TX\" then \"Texas\" ",
+                "else if [State Short] = \"UT\" then \"Utah\" ",
+                "else if [State Short] = \"VT\" then \"Vermont\"",
+                "else if [State Short] = \"VI\" then \"Virgin Islands\" ",
+                "else if [State Short] = \"VA\" then \"Virginia\" ",
+                "else if [State Short] = \"WA\" then \"Washington\"",
+                "else if [State Short] = \"WV\" then \"West Virginia\" ",
+                "else if [State Short] = \"WI\" then \"Wisconsin\" ",
+                "else if [State Short] = \"WY\" then \"Wyoming\"",
+                "else if [State Short] = \"CI\" then \"California\"",
+                "else null, type text),",
+                "    #\"Renamed Columns2\" = Table.RenameColumns(#\"Added Conditional Column\",{{\"Custom\", \"State Full\"}})",
                 "in",
-                "    #\"Usunięto kolumny\""
+                "    #\"Renamed Columns2\""
               ],
               "type": "m"
             }
@@ -18927,11 +19067,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          }
-        ],
-        "changedProperties": [
-          {
-            "property": "Name"
           }
         ],
         "columns": [
