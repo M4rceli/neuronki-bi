@@ -4,7 +4,7 @@
     "annotations": [
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"DimDate\",\"DimCity\",\"DimCustomer\",\"DimSalesperson\",\"DimProduct\",\"FactSale\",\"DimSalespersonTarget\",\"Color Formats\",\"Employee_csv\",\"DimCategory\"]"
+        "value": "[\"DimDate\",\"DimCity\",\"DimCustomer\",\"DimSalesperson\",\"DimProduct\",\"FactSale\",\"DimSalespersonTarget\",\"Color Formats\",\"Employee_csv\",\"DimCategory\",\"Dimension Stock Item\"]"
       },
       {
         "name": "__PBI_TimeIntelligenceEnabled",
@@ -12,7 +12,7 @@
       },
       {
         "name": "PBIDesktopVersion",
-        "value": "2.139.1678.0 (24.12)+2a034ab280bddf891eb7bb9ebfe6996f9c3a3196"
+        "value": "2.139.1733.0 (24.12)+af51d793b3eacaf90fc70909aa713164bbd22a66"
       },
       {
         "name": "PBI_ProTooling",
@@ -52,7 +52,7 @@
         ],
         "expression": [
           "let",
-          "    Source = Csv.Document(File.Contents(\"C:\\Users\\hania\\Downloads\\Dodatkowe dane\\Color Formats.csv\"),[Delimiter=\";\", Columns=3, Encoding=1250, QuoteStyle=QuoteStyle.None]),",
+          "    Source = Csv.Document(File.Contents(\"C:\\Users\\snosek\\Documents\\studia\\BI\\Dodatkowe dane\\Color Formats.csv\"),[Delimiter=\";\", Columns=3, Encoding=1250, QuoteStyle=QuoteStyle.None]),",
           "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}, {\"Column2\", type text}, {\"Column3\", type text}}),",
           "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Changed Type\", [PromoteAllScalars=true]),",
           "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Color\", type text}, {\"Background Color Format\", type text}, {\"Font Color Format\", type text}})",
@@ -165,6 +165,19 @@
         "fromTable": "DimSalespersonTarget",
         "toColumn": "Date",
         "toTable": "DimDate"
+      },
+      {
+        "name": "afb084e7-d097-47ba-945d-a82b4597c031",
+        "annotations": [
+          {
+            "name": "PBI_IsFromSource",
+            "value": "FS"
+          }
+        ],
+        "fromColumn": "Stock Item Key",
+        "fromTable": "FactSale",
+        "toColumn": "Stock Item Key",
+        "toTable": "Dimension Stock Item"
       }
     ],
     "sourceQueryCulture": "pl-PL",
@@ -485,7 +498,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Sql.Database(\"localhost\", \"WideWorldImportersDW\"),",
+                "    Source = Sql.Database(\"henio\\sqlexpress\", \"WideWorldImportersDW\"),",
                 "    Dimension_Date = Source{[Schema=\"Dimension\",Item=\"Date\"]}[Data]",
                 "in",
                 "    Dimension_Date"
@@ -762,7 +775,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Sql.Database(\"localhost\", \"WideWorldImportersDW\"),",
+                "    Source = Sql.Database(\"henio\\sqlexpress\", \"WideWorldImportersDW\"),",
                 "    Dimension_City = Source{[Schema=\"Dimension\",Item=\"City\"]}[Data],",
                 "    #\"Removed Top Rows\" = Table.Skip(Dimension_City,1),",
                 "    #\"Removed Columns\" = Table.RemoveColumns(#\"Removed Top Rows\",{\"Lineage Key\", \"Fact.Order\", \"Fact.Sale\"}),",
@@ -955,7 +968,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Sql.Database(\"localhost\", \"WideWorldImportersDW\"),",
+                "    Source = Sql.Database(\"henio\\sqlexpress\", \"WideWorldImportersDW\"),",
                 "    Dimension_Customer = Source{[Schema=\"Dimension\",Item=\"Customer\"]}[Data],",
                 "    #\"Removed Top Rows\" = Table.Skip(Dimension_Customer,1),",
                 "    #\"Removed Columns\" = Table.RemoveColumns(#\"Removed Top Rows\",{\"Fact.Movement\", \"Fact.Sale(Customer Key)\", \"Fact.Order\", \"Fact.Sale(Customer Key) 2\", \"Fact.Transaction(Customer Key)\", \"Fact.Transaction(Customer Key) 2\"})",
@@ -1130,7 +1143,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Sql.Database(\"localhost\", \"WideWorldImportersDW\"),",
+                "    Source = Sql.Database(\"henio\\sqlexpress\", \"WideWorldImportersDW\"),",
                 "    Dimension_Employee = Source{[Schema=\"Dimension\",Item=\"Employee\"]}[Data],",
                 "    #\"Filtered Rows\" = Table.SelectRows(Dimension_Employee, each ([Is Salesperson] = true)),",
                 "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Filtered Rows\",{\"Employee Key\", \"WWI Employee ID\", \"Employee\", \"Valid From\", \"Valid To\"}),",
@@ -1300,6 +1313,36 @@
             "lineageTag": "155b92a2-c364-42a2-9a82-3275a0dc066d",
             "sourceColumn": "Font Color Format",
             "summarizeBy": "none"
+          },
+          {
+            "name": "Selling Package",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": "LOOKUPVALUE('Dimension Stock Item'[Selling Package], 'Dimension Stock Item'[WWI Stock Item ID], DimProduct[WWI Stock Item ID])",
+            "isDataTypeInferred": true,
+            "lineageTag": "7d3f5f70-33e5-4405-ab3f-6a331455db63",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Brand",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": "LOOKUPVALUE('Dimension Stock Item'[Brand], 'Dimension Stock Item'[WWI Stock Item ID], DimProduct[WWI Stock Item ID])",
+            "isDataTypeInferred": true,
+            "lineageTag": "44da144f-cde1-4c96-b3f3-820d5dfbc106",
+            "summarizeBy": "none",
+            "type": "calculated"
           }
         ],
         "hierarchies": [
@@ -1330,7 +1373,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Sql.Database(\"localhost\", \"WideWorldImportersDW\"),",
+                "    Source = Sql.Database(\"henio\\sqlexpress\", \"WideWorldImportersDW\"),",
                 "    #\"Dimension_Stock Item\" = Source{[Schema=\"Dimension\",Item=\"Stock Item\"]}[Data],",
                 "    #\"Removed Top Rows\" = Table.Skip(#\"Dimension_Stock Item\",1),",
                 "    #\"Removed Other Columns\" = Table.SelectColumns(#\"Removed Top Rows\",{\"Stock Item Key\", \"WWI Stock Item ID\", \"Stock Item\", \"Color\", \"Unit Price\", \"Recommended Retail Price\"}),",
@@ -1718,7 +1761,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Sql.Database(\"localhost\", \"WideWorldImportersDW\"),",
+                "    Source = Sql.Database(\"henio\\sqlexpress\", \"WideWorldImportersDW\"),",
                 "    Fact_Sale = Source{[Schema=\"Fact\",Item=\"Sale\"]}[Data],",
                 "    #\"Removed Other Columns\" = Table.SelectColumns(Fact_Sale,{\"Sale Key\", \"City Key\", \"Customer Key\", \"Stock Item Key\", \"Invoice Date Key\", \"Delivery Date Key\", \"Salesperson Key\", \"WWI Invoice ID\", \"Quantity\", \"Unit Price\", \"Tax Rate\", \"Total Excluding Tax\", \"Tax Amount\", \"Profit\", \"Total Including Tax\", \"Total Dry Items\", \"Total Chiller Items\", \"Dimension.City\", \"Dimension.Customer(Bill To Customer Key)\", \"Dimension.Customer(Customer Key)\", \"Dimension.Date(Delivery Date Key)\", \"Dimension.Date(Invoice Date Key)\", \"Dimension.Employee\", \"Dimension.Stock Item\"}),",
                 "    #\"Added Conditional Column\" = Table.AddColumn(#\"Removed Other Columns\", \"Profit case\", each if [Profit] >= 0 then \"Positive\" else \"Negative\"),",
@@ -1832,7 +1875,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Csv.Document(File.Contents(\"C:\\Users\\hania\\Downloads\\Dodatkowe dane\\SalespersonTargets.csv\"),[Delimiter=\";\", Columns=14, Encoding=1250, QuoteStyle=QuoteStyle.None]),",
+                "    Source = Csv.Document(File.Contents(\"C:\\Users\\snosek\\Documents\\studia\\BI\\Dodatkowe dane\\SalespersonTargets.csv\"),[Delimiter=\";\", Columns=14, Encoding=1250, QuoteStyle=QuoteStyle.None]),",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
                 "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Year\", Int64.Type}, {\"EmployeeID\", Int64.Type}, {\"M01\", Int64.Type}, {\"M02\", Int64.Type}, {\"M03\", Int64.Type}, {\"M04\", Int64.Type}, {\"M05\", Int64.Type}, {\"M06\", Int64.Type}, {\"M07\", Int64.Type}, {\"M08\", Int64.Type}, {\"M09\", Int64.Type}, {\"M10\", Int64.Type}, {\"M11\", Int64.Type}, {\"M12\", Int64.Type}}),",
                 "    #\"Unpivoted Other Columns\" = Table.UnpivotOtherColumns(#\"Changed Type\", {\"EmployeeID\", \"Year\"}, \"Attribute\", \"Value\"),",
@@ -1942,7 +1985,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Csv.Document(File.Contents(\"C:\\Users\\hania\\Downloads\\Dodatkowe dane\\Employee_csv.csv\"),[Delimiter=\";\", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.None]),",
+                "    Source = Csv.Document(File.Contents(\"C:\\Users\\snosek\\Documents\\studia\\BI\\Dodatkowe dane\\Employee_csv.csv\"),[Delimiter=\";\", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.None]),",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
                 "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"WWI Employee ID\", Int64.Type}, {\"Employee\", type text}, {\"JobTitle\", type text}, {\"BusinessUnit\", type text}, {\"Age\", Int64.Type}})",
                 "in",
@@ -2033,7 +2076,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Excel.Workbook(File.Contents(\"C:\\Users\\hania\\Downloads\\Dodatkowe dane\\Category_dictionary.xlsx\"), null, true),",
+                "    Source = Excel.Workbook(File.Contents(\"C:\\Users\\snosek\\Documents\\studia\\BI\\Dodatkowe dane\\Category_dictionary.xlsx\"), null, true),",
                 "    Arkusz1_Sheet = Source{[Item=\"Arkusz1\",Kind=\"Sheet\"]}[Data],",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Arkusz1_Sheet, [PromoteAllScalars=true]),",
                 "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"WWI Stock Item ID\", Int64.Type}, {\"Description\", type text}, {\"Category\", type text}})",
@@ -2581,6 +2624,310 @@
             "source": {
               "expression": "Row(\"Column\", BLANK())",
               "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Dimension Stock Item",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Stock Item Key",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "9ebfee24-a1b1-4331-a189-8fa3bc201509",
+            "sourceColumn": "Stock Item Key",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "WWI Stock Item ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "8566d96f-e8f4-4df9-beaa-7b3e5957348f",
+            "sourceColumn": "WWI Stock Item ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Stock Item",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "9f066b03-f6ec-4540-a5a1-0c20ef0e5399",
+            "sourceColumn": "Stock Item",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Color",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "4c79ab79-9a38-46b1-955f-cd526689ca5d",
+            "sourceColumn": "Color",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Selling Package",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e47d6608-f626-4741-b5c2-7699999c4236",
+            "sourceColumn": "Selling Package",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Buying Package",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "1907d0bf-b9f8-49e8-a71e-83f935291bcd",
+            "sourceColumn": "Buying Package",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Brand",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "071bec1b-b3d7-4970-96c5-a095cc49315c",
+            "sourceColumn": "Brand",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Size",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "823ccf80-d5b4-4816-bf64-2366201d8c41",
+            "sourceColumn": "Size",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Lead Time Days",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "cd3a2a59-0cd1-49bc-94c4-f1e590faaf76",
+            "sourceColumn": "Lead Time Days",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Quantity Per Outer",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "e8518ba9-3f87-4331-a56e-b9dae18c4103",
+            "sourceColumn": "Quantity Per Outer",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Is Chiller Stock",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "boolean",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "lineageTag": "c6cf2404-163c-45c2-84a5-aa43c9e6309d",
+            "sourceColumn": "Is Chiller Stock",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Barcode",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "8d53ca8c-07c4-49f5-ab30-3f5db8554416",
+            "sourceColumn": "Barcode",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Tax Rate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "ad13ae7f-3e9d-4824-a31b-41f556fe9e24",
+            "sourceColumn": "Tax Rate",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Unit Price",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "0354d7a3-1258-4221-93e6-dd2017349cb1",
+            "sourceColumn": "Unit Price",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Recommended Retail Price",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "1e9ada5f-e788-4bf0-bd53-20670d520c54",
+            "sourceColumn": "Recommended Retail Price",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Typical Weight Per Unit",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "e67b9279-ee4a-4d97-8272-047203d8b778",
+            "sourceColumn": "Typical Weight Per Unit",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Valid From",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "lineageTag": "abd691e8-737d-4c29-8707-233be40d6db9",
+            "sourceColumn": "Valid From",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Valid To",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "lineageTag": "2d61e4d9-805d-4b51-9bf9-8cf5411ec604",
+            "sourceColumn": "Valid To",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Lineage Key",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "79365f99-28fb-49fc-86ce-afe4ca88dd3f",
+            "sourceColumn": "Lineage Key",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "792aafbf-4430-4a30-bd53-aa37dc109f61",
+        "partitions": [
+          {
+            "name": "Dimension Stock Item",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Sql.Databases(\"henio\\sqlexpress\"),",
+                "    WideWorldImportersDW = Source{[Name=\"WideWorldImportersDW\"]}[Data],",
+                "    #\"Dimension_Stock Item\" = WideWorldImportersDW{[Schema=\"Dimension\",Item=\"Stock Item\"]}[Data]",
+                "in",
+                "    #\"Dimension_Stock Item\""
+              ],
+              "type": "m"
             }
           }
         ]
