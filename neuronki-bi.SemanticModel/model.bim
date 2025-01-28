@@ -5024,6 +5024,29 @@
                   }
                 ]
               },
+              "dim_supplier.\r\n              ": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "DimSupplier",
+                    "ConceptualProperty": "Is_Used"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "is used": {
+                      "State": "Generated"
+                    }
+                  },
+                  {
+                    "Is_Used": {
+                      "State": "Generated",
+                      "Type": "Noun",
+                      "Weight": 0.99
+                    }
+                  }
+                ]
+              },
               "dim_supplier.WWI_supplier_ID": {
                 "Definition": {
                   "Binding": {
@@ -5204,30 +5227,6 @@
                       "State": "Suggested",
                       "Type": "Noun",
                       "Weight": 0.714
-                    }
-                  }
-                ]
-              },
-              "dim_supplier.
-              ": {
-                "Definition": {
-                  "Binding": {
-                    "ConceptualEntity": "DimSupplier",
-                    "ConceptualProperty": "Is_Used"
-                  }
-                },
-                "State": "Generated",
-                "Terms": [
-                  {
-                    "is used": {
-                      "State": "Generated"
-                    }
-                  },
-                  {
-                    "Is_Used": {
-                      "State": "Generated",
-                      "Type": "Noun",
-                      "Weight": 0.99
                     }
                   }
                 ]
@@ -17693,16 +17692,13 @@
             ]
           },
           {
-
             "name": "State",
-
             "annotations": [
               {
                 "name": "SummarizationSetBy",
                 "value": "Automatic"
               }
             ],
-
             "dataCategory": "StateOrProvince",
             "dataType": "string",
             "lineageTag": "6762bdd4-0fb2-4688-bf8b-d0b226b63ea3",
@@ -17722,7 +17718,6 @@
             "lineageTag": "1076e302-31d1-4ffb-adf2-c8beddde5782",
             "sourceColumn": "City",
             "summarizeBy": "none"
-
           }
         ],
         "lineageTag": "7eba69db-ec4d-42db-914f-1ace2127675a",
@@ -19152,13 +19147,13 @@
           {
             "name": "Total_Volume_of_Supply",
             "expression": [
-              "",
-              "SUMX(",
-              "    FILTER(",
-              "        FACTMOVEMENT,",
-              "        FactMovement[Quantity] > 0 && FactMovement[Supplier Key] > 0",
-              "    ),",
-              "    FactMovement[Quantity]",
+              "\r",
+              "SUMX(\r",
+              "    FILTER(\r",
+              "        FACTMOVEMENT,\r",
+              "        FactMovement[Quantity] > 0 && FactMovement[Supplier Key] > 0\r",
+              "    ),\r",
+              "    FactMovement[Quantity]\r",
               ")"
             ],
             "formatString": "0",
@@ -19167,13 +19162,13 @@
           {
             "name": "Total_Customer",
             "expression": [
-              "",
-              "SUMX(",
-              "    FILTER(",
-              "        FACTMOVEMENT,",
-              "        FACTMOVEMENT[Quantity] < 0 && FactMovement[Customer Key] > 0",
-              "    ),",
-              "    ABS(FACTMOVEMENT[Quantity])",
+              "\r",
+              "SUMX(\r",
+              "    FILTER(\r",
+              "        FACTMOVEMENT,\r",
+              "        FACTMOVEMENT[Quantity] < 0 && FactMovement[Customer Key] > 0\r",
+              "    ),\r",
+              "    ABS(FACTMOVEMENT[Quantity])\r",
               ")"
             ],
             "formatString": "0",
@@ -19182,16 +19177,16 @@
           {
             "name": "Total_Volume_Top10",
             "expression": [
-              "",
-              "IF(",
-              "    RANKX(",
-              "        ALL(DimSupplier[Supplier]),",
-              "        [Total_Volume_of_Supply], ",
-              "        , ",
-              "        DESC",
-              "    ) <= 10,",
-              "    [Total_Volume_of_Supply],",
-              "    BLANK()",
+              "\r",
+              "IF(\r",
+              "    RANKX(\r",
+              "        ALL(DimSupplier[Supplier]),\r",
+              "        [Total_Volume_of_Supply], \r",
+              "        , \r",
+              "        DESC\r",
+              "    ) <= 10,\r",
+              "    [Total_Volume_of_Supply],\r",
+              "    BLANK()\r",
               ")"
             ],
             "formatString": "0",
